@@ -2,8 +2,8 @@ const config = {
   navLinks: [
     { label: "Home", to: "/" },
     { label: "Courses", to: "/courses" },
-    { label: "Contact us", to: "/contact" },
-    { label: "About us", to: "/about" },
+    { label: "Contact Us", to: "/contact" },
+    { label: "About Us", to: "/about" },
   ],
   ctaButtons: [
     { label: "Sign up", to: "/signup", isPrimary: true },

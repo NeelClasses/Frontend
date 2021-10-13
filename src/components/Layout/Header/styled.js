@@ -32,7 +32,7 @@ export const Links = styled.div`
     display: ${(props) => (props.isSidebar ? "flex" : "none")};
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
   }
 `;
 
@@ -46,6 +46,12 @@ export const StyledLink = styled(Link)`
     text-decoration: underline;
   }
   margin-top: ${(props) => (props.isSidebar ? "1rem" : "0px")};
+  @media only screen and (max-width: 840px) {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #eaeaea;
+    width: 100%;
+    text-align: right;
+  }
 `;
 
 export const Buttons = styled.div`
@@ -54,7 +60,8 @@ export const Buttons = styled.div`
     display: ${(props) => (props.isSidebar ? "flex" : "none")};
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    padding: 0.5rem 1.5rem;
   }
 `;
 
@@ -75,6 +82,11 @@ export const Button = styled(Link)`
   &:hover {
     color: var(--primary-color);
     background-color: #fff;
+  }
+  @media only screen and (max-width: 840px) {
+    width: 6.5rem;
+    margin: 0.5rem 0 !important;
+    text-align: center;
   }
 `;
 
@@ -115,6 +127,6 @@ export const SidebarWrapper = styled.div`
   background-color: #fff;
   transition: 0.5s all ease;
   position: absolute;
-  width: 50%;
+  width: 70%;
   right: ${(props) => (props.isSidebar ? "0px" : "-400px")};
 `;
