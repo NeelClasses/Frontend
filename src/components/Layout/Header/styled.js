@@ -126,7 +126,7 @@ export const Sidebar = styled.div`
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 4.5rem;
+  top: 4rem;
   bottom: 0;
   left: 0;
   right: 0;
