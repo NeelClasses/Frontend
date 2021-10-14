@@ -120,7 +120,7 @@ export const Sidebar = styled.div`
 export const SidebarWrapper = styled.div`
   height: 100%;
   overflow: auto;
-  background-color: #fff;
+  background-color: #fffcf7;
   transition: 0.5s all ease;
   position: absolute;
   width: 70%;

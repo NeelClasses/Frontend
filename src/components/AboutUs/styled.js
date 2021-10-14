@@ -47,7 +47,6 @@ export const SubHeading = styled.p`
 export const ContentSection = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 1280px;
   margin: 5rem auto;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
