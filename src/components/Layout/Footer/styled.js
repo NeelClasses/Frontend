@@ -76,6 +76,8 @@ export const BottomSection = styled.div`
   @media only screen and (max-width: 414px) {
     flex-direction: column;
     align-items: center;
+    padding: 1rem 0;
+    padding-top: 1rem;
   }
 `;
 
