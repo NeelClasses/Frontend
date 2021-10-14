@@ -11,7 +11,28 @@ export const HeaderWrapper = styled.nav`
 `;
 
 export const NavIcon = styled.div`
-  min-width: 10rem;
+  display: flex;
+  align-items: center;
+  svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+  span {
+    margin-left: 1rem;
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  @media only screen and (max-width: 414px) {
+    span {
+      margin-left: 0.5rem;
+      font-size: 16px;
+    }
+    svg {
+      height: 1.8rem;
+      width: 1.8rem;
+    }
+  }
 `;
 
 export const ToggleSection = styled.div`
@@ -105,7 +126,7 @@ export const Sidebar = styled.div`
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 4rem;
+  top: 4.5rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -118,7 +139,7 @@ export const Sidebar = styled.div`
 `;
 
 export const SidebarWrapper = styled.div`
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: #fffcf7;
   transition: 0.5s all ease;

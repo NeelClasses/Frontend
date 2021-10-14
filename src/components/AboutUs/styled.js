@@ -60,6 +60,11 @@ export const ContentSection = styled.div`
     align-items: center;
     max-width: 400px;
   }
+  @media only screen and (max-width: 414px) {
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 export const Image = styled.img`
@@ -74,6 +79,10 @@ export const TextSection = styled.div`
   margin: 2rem;
   margin-bottom: 0;
   height: 100%;
+  @media only screen and (max-width: 840px) {
+    margin: 0;
+    margin-top: 2rem;
+  }
 `;
 
 export const ContentHeading = styled.h2`

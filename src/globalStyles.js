@@ -38,6 +38,9 @@ const GlobalStyles = createGlobalStyle`
     color: var(--primary-color);
     font-size: 18px;
   }
+  img {
+    width: 100%;
+  }
 `;
 
 export default GlobalStyles;

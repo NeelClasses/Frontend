@@ -13,6 +13,7 @@ import config from "./config";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { Content } from "../../../globalStyles";
+import Logo from "../../../constants/Images/Logo";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
@@ -33,7 +34,8 @@ const Header = () => {
     <Content>
       <HeaderWrapper>
         <NavIcon>
-          <h3>Neel Classes</h3>
+          <Logo />
+          <span>Neel Classes</span>
         </NavIcon>
         <Links isSidebar={false}>
           {config.navLinks.map((link, index) => (
