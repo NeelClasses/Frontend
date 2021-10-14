@@ -45,6 +45,9 @@ export const SubHeading = styled.p`
     font-weight: 500;
   }
   text-align: center;
+  @media only screen and (max-width: 414px) {
+    font-size: 18px;
+  }
 `;
 
 export const ContentSection = styled.div`
