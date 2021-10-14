@@ -17,6 +17,7 @@ export const TopSection = styled.div`
   @media only screen and (max-width: 415px) {
     flex-direction: column;
     align-items: flex-start;
+    padding-bottom: 0;
   }
 `;
 
