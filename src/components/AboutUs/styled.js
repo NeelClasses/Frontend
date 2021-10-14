@@ -31,6 +31,9 @@ export const Heading = styled.h1`
   color: #fff;
   font-weight: 700;
   font-size: 42px;
+  @media only screen and (max-width: 414px) {
+    font-size: 28px;
+  }
 `;
 
 export const SubHeading = styled.p`
