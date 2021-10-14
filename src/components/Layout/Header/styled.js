@@ -16,6 +16,9 @@ export const NavIcon = styled.div`
   svg {
     height: 2.5rem;
     width: 2.5rem;
+    color: var(--primary-color);
+    filter: invert(9%) sepia(74%) saturate(2313%) hue-rotate(184deg)
+      brightness(98%) contrast(102%);
   }
   span {
     margin-left: 1rem;
@@ -60,6 +63,7 @@ export const StyledLink = styled.button`
   outline: none;
   color: var(--primary-color);
   font-weight: 400;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }

@@ -29,6 +29,7 @@ const Header = () => {
   const onLinksClicked = (link) => {
     setIsSidebarActive(false);
     history.push(link);
+    document.body.style.overflow = "auto";
   };
   return (
     <Content>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BannerImg from "../../constants/Images/banner.jpg";
 
@@ -48,6 +49,9 @@ export const SubHeading = styled.p`
   @media only screen and (max-width: 414px) {
     font-size: 18px;
   }
+  @media only screen and (max-width: 375px) {
+    width: 75%;
+  }
 `;
 
 export const ContentSection = styled.div`
@@ -79,9 +83,14 @@ export const TextSection = styled.div`
   margin: 2rem;
   margin-bottom: 0;
   height: 100%;
+  margin-left: 1rem;
   @media only screen and (max-width: 840px) {
     margin: 0;
     margin-top: 2rem;
+    margin-left: 1rem;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-left: 0;
   }
 `;
 
@@ -96,7 +105,9 @@ export const ContentText = styled.p`
   margin-bottom: 2rem;
 `;
 
-export const ContactButton = styled.button`
+export const ContactButton = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
   padding: 0.4rem 1.4rem;
   font-weight: 500;
   font-size: 16px;

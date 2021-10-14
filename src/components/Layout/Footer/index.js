@@ -12,10 +12,21 @@ import {
   Tagline,
   TopSection,
   QuickLinksSection,
+  GetInTouch,
+  Phone,
+  Address,
+  Email,
+  GetInTouchHeading,
+  Links,
 } from "./styled";
 import FooterConfig from "./config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Content } from "../../../globalStyles";
+import {
+  faEnvelope,
+  faMapMarkerAlt,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
@@ -37,6 +48,29 @@ const Footer = () => {
               ))}
             </QuickLinks>
           </QuickLinksSection>
+          <GetInTouch>
+            <GetInTouchHeading>Get In Touch</GetInTouchHeading>
+            <Address>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <span>
+                6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon,
+                <br /> Pin: 425105
+              </span>
+            </Address>
+            <Phone>
+              <FontAwesomeIcon icon={faPhone} rotation={90} />
+              <Links>
+                <a href="tel:+91-8767-346-075">+91-8767-346-075</a>
+                <a href="tel:+91-9545-583-393">+91-9545-583-393</a>
+              </Links>
+            </Phone>
+            <Email>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <a href="mailto:rahulcricket91@gmail.com">
+                rahulcricket91@gmail.com
+              </a>
+            </Email>
+          </GetInTouch>
         </TopSection>
         <BottomSection>
           <SocialLinks>

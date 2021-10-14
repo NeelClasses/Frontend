@@ -40,7 +40,7 @@ const AboutUs = () => {
               completed my Diploma in B.E. Mechanical Engineering, with M. Tech
               in Design Engineering.
             </ContentText>
-            <ContactButton>Contact Us</ContactButton>
+            <ContactButton to="/contact">Contact Us</ContactButton>
           </TextSection>
         </ContentSection>
       </Content>

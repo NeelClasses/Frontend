@@ -14,7 +14,7 @@ export const TopSection = styled.div`
   width: 100%;
   border-bottom: 0.5px solid #fff;
   padding-bottom: 2rem;
-  @media only screen and (max-width: 415px) {
+  @media only screen and (max-width: 592px) {
     flex-direction: column;
     align-items: flex-start;
     padding-bottom: 0;
@@ -33,7 +33,7 @@ export const Icon = styled.h2`
 export const Tagline = styled.p`
   margin-top: 1rem;
   letter-spacing: 0.5px;
-  word-spacing: 8px;
+  /* word-spacing: 8px; */
 `;
 export const QuickLinksSection = styled.div`
   @media only screen and (max-width: 415px) {
@@ -48,8 +48,11 @@ export const QuickLinks = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 2rem;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     height: unset;
+  }
+  @media only screen and (max-width: 592px) {
+    margin-bottom: 0;
   }
 `;
 
@@ -67,6 +70,65 @@ export const StyledLink = styled(Link)`
   }
   margin-top: 1rem;
   margin-right: 3rem;
+`;
+
+export const GetInTouch = styled.div`
+  max-width: 300px;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  @media only screen and (max-width: 592px) {
+    margin-left: 0;
+  }
+`;
+
+export const GetInTouchHeading = styled.h4`
+  margin: 12px;
+  @media only screen and (max-width: 592px) {
+    margin-left: 0;
+  }
+`;
+
+export const Address = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  span {
+    margin-left: 1rem;
+  }
+`;
+
+export const Phone = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+export const Links = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+export const Email = styled.div`
+  display: flex;
+  align-items: center;
+  a {
+    margin-left: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const BottomSection = styled.div`
