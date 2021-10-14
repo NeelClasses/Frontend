@@ -41,6 +41,7 @@ export const SubHeading = styled.p`
     font-size: 22px;
     font-weight: 500;
   }
+  text-align: center;
 `;
 
 export const ContentSection = styled.div`
