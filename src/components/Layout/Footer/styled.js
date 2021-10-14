@@ -136,6 +136,7 @@ export const BottomSection = styled.div`
   justify-content: space-between;
   padding: 2rem 0;
   padding-top: 3rem;
+  align-items: center;
   @media only screen and (max-width: 414px) {
     flex-direction: column;
     align-items: center;
