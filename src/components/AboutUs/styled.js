@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BannerImg from "../../constants/Images/banner.jpg";
 
@@ -11,14 +10,21 @@ export const TitleSection = styled.div`
   align-items: center;
   flex-direction: column;
   background-image: linear-gradient(
-      rgba(0, 122, 223, 0.455) 0%,
-      rgba(0, 81, 148, 0.7) 53.15%,
-      rgba(0, 122, 223, 0.455) 100%
+      rgba(0, 42, 69, 1) 0%,
+      rgba(0, 42, 69, 0.7) 53.15%,
+      rgba(0, 42, 69, 1) 100%
     ),
     url(${BannerImg});
-  min-height: 20rem;
+  min-height: 25rem;
   background-size: cover;
   background-position: 50%;
+`;
+
+export const ContentTextSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Heading = styled.h1`
@@ -75,14 +81,13 @@ export const ContentText = styled.p`
   margin-bottom: 2rem;
 `;
 
-export const ContactButton = styled(Link)`
+export const ContactButton = styled.button`
   padding: 0.4rem 1.4rem;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--primary-color);
   background-color: var(--secondary-color);
   border-radius: 5px;
-  /* border: 2px solid var(--primary-color); */
   transition: 0.2s all ease-in-out;
   &:hover {
     background-color: var(--primary-color);

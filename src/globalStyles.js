@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     :root {
@@ -31,6 +31,19 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  button {
+    outline:none;
+    background-color:transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 18px;
+  }
 `;
 
 export default GlobalStyles;
+
+export const Content = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;

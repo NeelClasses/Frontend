@@ -11,45 +11,46 @@ import {
   StyledLink,
   Tagline,
   TopSection,
+  QuickLinksSection,
 } from "./styled";
 import FooterConfig from "./config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Content } from "../../../globalStyles";
 
 const Footer = () => {
   return (
     <FooterWrapper>
-      <TopSection>
-        <LeftSection>
-          <Icon>Neel Classes</Icon>
-          <Tagline>
-            Life is good for only two things, Discovering Mathematics and
-            Teaching Mathematics.
-          </Tagline>
-        </LeftSection>
-        <div>
-          <QuickLinksHeading>Quick Links</QuickLinksHeading>
-          <QuickLinks>
-            {FooterConfig.navLinks.map((link) => (
-              <StyledLink to={link.to}>{link.label}</StyledLink>
+      <Content>
+        <TopSection>
+          <LeftSection>
+            <Icon>Neel Classes</Icon>
+            <Tagline>
+              Life is good for only two things, Discovering Mathematics and
+              Teaching Mathematics.
+            </Tagline>
+          </LeftSection>
+          <QuickLinksSection>
+            <QuickLinksHeading>Quick Links</QuickLinksHeading>
+            <QuickLinks>
+              {FooterConfig.navLinks.map((link) => (
+                <StyledLink to={link.to}>{link.label}</StyledLink>
+              ))}
+            </QuickLinks>
+          </QuickLinksSection>
+        </TopSection>
+        <BottomSection>
+          <SocialLinks>
+            {FooterConfig.socialLinks.map((link) => (
+              <SocialLink href={link.to} target="_blank">
+                <FontAwesomeIcon icon={link.icon} iconColor="#fff" />
+              </SocialLink>
             ))}
-          </QuickLinks>
-        </div>
-      </TopSection>
-      <BottomSection>
-        <SocialLinks>
-          {FooterConfig.socialLinks.map((link) => (
-            <SocialLink href={link.to}>
-              <FontAwesomeIcon icon={link.icon} iconColor="#fff" />
-            </SocialLink>
-          ))}
-          {/* <a href="/">
-            <FontAwesomeIcon icon={faTw} iconColor="#fff" size="2x" />
-          </a> */}
-        </SocialLinks>
-        <CopyRight>
-          All Right Reserved. Copyright {new Date().getFullYear()}
-        </CopyRight>
-      </BottomSection>
+          </SocialLinks>
+          <CopyRight>
+            All Right Reserved. Copyright {new Date().getFullYear()}
+          </CopyRight>
+        </BottomSection>
+      </Content>
     </FooterWrapper>
   );
 };

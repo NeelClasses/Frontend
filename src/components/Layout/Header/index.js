@@ -11,6 +11,8 @@ import {
 } from "./styled";
 import config from "./config";
 import { useState } from "react";
+import { useHistory } from "react-router";
+import { Content } from "../../../globalStyles";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
@@ -21,26 +23,36 @@ const Header = () => {
       } else {
         document.body.style.overflow = "auto";
       }
-    };
+    },
+    history = useHistory();
+  const onLinksClicked = (link) => {
+    setIsSidebarActive(false);
+    history.push(link);
+  };
   return (
-    <>
+    <Content>
       <HeaderWrapper>
         <NavIcon>
           <h3>Neel Classes</h3>
         </NavIcon>
         <Links isSidebar={false}>
-          {config.navLinks.map((link) => (
-            <StyledLink to={link.to} isSidebar={false}>
+          {config.navLinks.map((link, index) => (
+            <StyledLink
+              key={index}
+              isSidebar={false}
+              onClick={() => onLinksClicked(link.to)}
+            >
               {link.label}
             </StyledLink>
           ))}
         </Links>
         <Buttons isSidebar={false}>
-          {config.ctaButtons.map((button) => (
+          {config.ctaButtons.map((button, index) => (
             <Button
-              to={button.to}
+              key={index}
               isPrimary={button.isPrimary}
               isSidebar={false}
+              onClick={() => onLinksClicked(button.to)}
             >
               {button.label}
             </Button>
@@ -53,18 +65,23 @@ const Header = () => {
       <Sidebar active={isSidebarActive}>
         <SidebarWrapper isSidebar={isSidebarActive}>
           <Links isSidebar={true}>
-            {config.navLinks.map((link) => (
-              <StyledLink to={link.to} isSidebar={true}>
+            {config.navLinks.map((link, index) => (
+              <StyledLink
+                key={index}
+                isSidebar={true}
+                onClick={() => onLinksClicked(link.to)}
+              >
                 {link.label}
               </StyledLink>
             ))}
           </Links>
           <Buttons isSidebar={true}>
-            {config.ctaButtons.map((button) => (
+            {config.ctaButtons.map((button, index) => (
               <Button
-                to={button.to}
+                key={index}
                 isPrimary={button.isPrimary}
                 isSidebar={true}
+                onClick={() => onLinksClicked(button.to)}
               >
                 {button.label}
               </Button>
@@ -72,7 +89,7 @@ const Header = () => {
           </Buttons>
         </SidebarWrapper>
       </Sidebar>
-    </>
+    </Content>
   );
 };
 

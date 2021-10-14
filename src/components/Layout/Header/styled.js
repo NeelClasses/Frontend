@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.nav`
-  max-width: 1920px;
   overflow: hidden;
-  padding: 1rem 1.5rem;
+  padding: 1rem 0;
   display: flex;
   z-index: 9999;
   justify-content: space-between;
@@ -13,7 +11,6 @@ export const HeaderWrapper = styled.nav`
 `;
 
 export const NavIcon = styled.div`
-  padding: 0 1rem;
   min-width: 10rem;
 `;
 
@@ -36,7 +33,7 @@ export const Links = styled.div`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.button`
   padding: 0 1rem;
   text-decoration: none;
   outline: none;
@@ -45,9 +42,8 @@ export const StyledLink = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
-  margin-top: ${(props) => (props.isSidebar ? "1rem" : "0px")};
   @media only screen and (max-width: 840px) {
-    padding: 0.5rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid #eaeaea;
     width: 100%;
     text-align: right;
@@ -61,15 +57,15 @@ export const Buttons = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: flex-end;
-    padding: 0.5rem 1.5rem;
+    padding: 1rem 1.5rem;
   }
 `;
 
-export const Button = styled(Link)`
-  margin: 0 0.5rem;
+export const Button = styled.button`
+  margin-left: 1rem;
   padding: 0.4rem 1.4rem;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   background-color: ${(props) =>
     props.isPrimary ? "var(--primary-color)" : "var(--secondary-color)"};
   color: ${(props) => (props.isPrimary ? "#fff" : "var(--primary-color)")};
