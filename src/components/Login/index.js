@@ -13,20 +13,10 @@ import {
   TextElement,
 } from "../Signup/styled";
 import Logo from "../../constants/Images/Logo";
-import { constants } from "../../constants";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { useState } from "react";
 import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
-
-const outerTheme = createTheme({
-  palette: {
-    primary: {
-      main: constants.colors.primaryColor,
-    },
-  },
-});
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -67,28 +57,25 @@ const Login = () => {
         </Link>
         <Form onSubmit={handleSubmit}>
           <FormHeading>Log In</FormHeading>
-          <ThemeProvider theme={outerTheme}>
-            <TextElement
-              id="outlined-basic"
-              label="Mobile Number"
-              variant="outlined"
-              name="number"
-              size="small"
-              type="number"
-              fullWidth
-              value={inputs.number}
-              onChange={handleChange}
-              error={errors.number !== ""}
-              helperText={errors.number}
-            />
-            <Button fullWidth variant="contained" type="submit">
-              Log In
-            </Button>
-            <BottomText>
-              Don't have an account?{" "}
-              <BottomLink to="/signup">Sign up</BottomLink>
-            </BottomText>
-          </ThemeProvider>
+          <TextElement
+            id="outlined-basic"
+            label="Mobile Number"
+            variant="outlined"
+            name="number"
+            size="small"
+            type="number"
+            fullWidth
+            value={inputs.number}
+            onChange={handleChange}
+            error={errors.number !== ""}
+            helperText={errors.number}
+          />
+          <Button fullWidth variant="contained" type="submit">
+            Log In
+          </Button>
+          <BottomText>
+            Don't have an account? <BottomLink to="/signup">Sign up</BottomLink>
+          </BottomText>
         </Form>
       </LeftSection>
       <RightSection>

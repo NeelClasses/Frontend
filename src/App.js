@@ -7,30 +7,34 @@ import Signup from "./components/Signup";
 import RouteLayout from "./routes";
 import Login from "./components/Login";
 import Courses from "./components/Courses";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./constants/theme";
 
 function App() {
   return (
-    <Router>
-      <GlobalStyles />
-      <Switch>
-        <RouteLayout path="/" exact component={Home} />
-        <RouteLayout path="/courses" exact component={Courses} />
-        <RouteLayout path="/about" exact component={AboutUs} />
-        <RouteLayout path="/contact" exact component={ContactUs} />
-        <RouteLayout
-          path="/signup"
-          exact
-          component={Signup}
-          isFullScreen={true}
-        />
-        <RouteLayout
-          path="/login"
-          exact
-          component={Login}
-          isFullScreen={true}
-        />
-      </Switch>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <GlobalStyles />
+        <Switch>
+          <RouteLayout path="/" exact component={Home} />
+          <RouteLayout path="/courses" exact component={Courses} />
+          <RouteLayout path="/about" exact component={AboutUs} />
+          <RouteLayout path="/contact" exact component={ContactUs} />
+          <RouteLayout
+            path="/signup"
+            exact
+            component={Signup}
+            isFullScreen={true}
+          />
+          <RouteLayout
+            path="/login"
+            exact
+            component={Login}
+            isFullScreen={true}
+          />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
