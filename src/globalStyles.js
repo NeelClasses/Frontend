@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
+import Footer from "./components/Layout/Footer";
+import Header from "./components/Layout/Header";
 import { constants } from "./constants";
 
 const GlobalStyles = createGlobalStyle`
@@ -51,3 +53,17 @@ export const Content = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
 `;
+
+export const LayoutComponent = (props) => {
+  if (props.isFullScreen) {
+    return (
+      <>
+        <Header />
+        {props.children}
+        <Footer />
+      </>
+    );
+  } else {
+    return <>{props.children}</>;
+  }
+};

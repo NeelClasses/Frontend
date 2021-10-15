@@ -68,7 +68,9 @@ const Footer = () => {
             <Email>
               <FontAwesomeIcon icon={faEnvelope} />
               {constants.contactUsDetails.emails.map((mail) => (
-                <a href={`mailto:${mail}`}>{mail}</a>
+                <a key={mail} href={`mailto:${mail}`}>
+                  {mail}
+                </a>
               ))}
             </Email>
           </GetInTouch>
@@ -76,7 +78,7 @@ const Footer = () => {
         <BottomSection>
           <SocialLinks>
             {constants.footerDetails.socialLinks.map((link) => (
-              <SocialLink href={link.to} target="_blank">
+              <SocialLink key={link.to} href={link.to} target="_blank">
                 <FontAwesomeIcon icon={link.icon} iconColor="#fff" />
               </SocialLink>
             ))}

@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 import { Content } from "../../../globalStyles";
 import Logo from "../../../constants/Images/Logo";
 import { constants } from "../../../constants";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
@@ -25,7 +26,8 @@ const Header = () => {
         document.body.style.overflow = "auto";
       }
     },
-    history = useHistory();
+    history = useHistory(),
+    { pathname } = useLocation();
   const onLinksClicked = (link) => {
     setIsSidebarActive(false);
     history.push(link);
@@ -34,16 +36,21 @@ const Header = () => {
   return (
     <Content>
       <HeaderWrapper>
-        <NavIcon>
-          <Logo />
-          <span>Neel Classes</span>
-        </NavIcon>
+        <Link to="/">
+          <NavIcon>
+            <Logo />
+            <span>Neel Classes</span>
+          </NavIcon>
+        </Link>
         <Links isSidebar={false}>
           {constants.headerDetails.navLinks.map((link, index) => (
             <StyledLink
               key={index}
               isSidebar={false}
               onClick={() => onLinksClicked(link.to)}
+              isActive={
+                link.to === "/" ? pathname === "/" : pathname.includes(link.to)
+              }
             >
               {link.label}
             </StyledLink>

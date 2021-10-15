@@ -61,7 +61,8 @@ export const StyledLink = styled.button`
   padding: 0 1rem;
   text-decoration: none;
   outline: none;
-  color: var(--primary-color);
+  color: ${(props) =>
+    props.isActive ? "var(--secondary-color)" : "var(--primary-color)"};
   font-weight: 400;
   cursor: pointer;
   &:hover {
