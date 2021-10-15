@@ -19,7 +19,6 @@ import {
   GetInTouchHeading,
   Links,
 } from "./styled";
-import FooterConfig from "./config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Content } from "../../../globalStyles";
 import {
@@ -27,6 +26,7 @@ import {
   faMapMarkerAlt,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { constants } from "../../../constants";
 
 const Footer = () => {
   return (
@@ -43,7 +43,7 @@ const Footer = () => {
           <QuickLinksSection>
             <QuickLinksHeading>Quick Links</QuickLinksHeading>
             <QuickLinks>
-              {FooterConfig.navLinks.map((link) => (
+              {constants.footerDetails.navLinks.map((link) => (
                 <StyledLink to={link.to}>{link.label}</StyledLink>
               ))}
             </QuickLinks>
@@ -53,28 +53,29 @@ const Footer = () => {
             <Address>
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               <span>
-                6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon,
-                <br /> Pin: 425105
+                {constants.contactUsDetails.address}
+                <br /> Pin: {constants.contactUsDetails.pin}
               </span>
             </Address>
             <Phone>
-              <FontAwesomeIcon icon={faPhone} rotation={90} />
+              <FontAwesomeIcon icon={faPhone} rotation={90} color="#002a45" />
               <Links>
-                <a href="tel:+91-8767-346-075">+91-8767-346-075</a>
-                <a href="tel:+91-9545-583-393">+91-9545-583-393</a>
+                {constants.contactUsDetails.phones.map((phone) => (
+                  <a href={`tel:${phone}`}>{phone}</a>
+                ))}
               </Links>
             </Phone>
             <Email>
               <FontAwesomeIcon icon={faEnvelope} />
-              <a href="mailto:rahulcricket91@gmail.com">
-                rahulcricket91@gmail.com
-              </a>
+              {constants.contactUsDetails.emails.map((mail) => (
+                <a href={`mailto:${mail}`}>{mail}</a>
+              ))}
             </Email>
           </GetInTouch>
         </TopSection>
         <BottomSection>
           <SocialLinks>
-            {FooterConfig.socialLinks.map((link) => (
+            {constants.footerDetails.socialLinks.map((link) => (
               <SocialLink href={link.to} target="_blank">
                 <FontAwesomeIcon icon={link.icon} iconColor="#fff" />
               </SocialLink>

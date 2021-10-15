@@ -1,9 +1,10 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { constants } from "./constants";
 
 const GlobalStyles = createGlobalStyle`
     :root {
-      --primary-color: #002a45;
-      --secondary-color: #fea713;
+      --primary-color: ${constants.colors.primaryColor};
+      --secondary-color: ${constants.colors.secondaryColor};
     }
     html {
       box-sizing: border-box;
@@ -11,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
       animation: fadeInAnimation ease 1s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      background-color: #fffcf7;
+      background-color: ${constants.colors.backgroundColor};
 
       @keyframes fadeInAnimation {
           0% {

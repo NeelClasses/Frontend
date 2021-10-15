@@ -9,11 +9,11 @@ import {
   ToggleButton,
   SidebarWrapper,
 } from "./styled";
-import config from "./config";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { Content } from "../../../globalStyles";
 import Logo from "../../../constants/Images/Logo";
+import { constants } from "../../../constants";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
@@ -39,7 +39,7 @@ const Header = () => {
           <span>Neel Classes</span>
         </NavIcon>
         <Links isSidebar={false}>
-          {config.navLinks.map((link, index) => (
+          {constants.headerDetails.navLinks.map((link, index) => (
             <StyledLink
               key={index}
               isSidebar={false}
@@ -50,7 +50,7 @@ const Header = () => {
           ))}
         </Links>
         <Buttons isSidebar={false}>
-          {config.ctaButtons.map((button, index) => (
+          {constants.headerDetails.ctaButtons.map((button, index) => (
             <Button
               key={index}
               isPrimary={button.isPrimary}
@@ -68,7 +68,7 @@ const Header = () => {
       <Sidebar active={isSidebarActive}>
         <SidebarWrapper isSidebar={isSidebarActive}>
           <Links isSidebar={true}>
-            {config.navLinks.map((link, index) => (
+            {constants.headerDetails.navLinks.map((link, index) => (
               <StyledLink
                 key={index}
                 isSidebar={true}
@@ -79,7 +79,7 @@ const Header = () => {
             ))}
           </Links>
           <Buttons isSidebar={true}>
-            {config.ctaButtons.map((button, index) => (
+            {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button
                 key={index}
                 isPrimary={button.isPrimary}
