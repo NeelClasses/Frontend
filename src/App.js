@@ -6,6 +6,7 @@ import ContactUs from "./components/Contactus";
 import Signup from "./components/Signup";
 import RouteLayout from "./routes";
 import Login from "./components/Login";
+import Courses from "./components/Courses";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <GlobalStyles />
       <Switch>
         <RouteLayout path="/" exact component={Home} />
+        <RouteLayout path="/courses" exact component={Courses} />
         <RouteLayout path="/about" exact component={AboutUs} />
         <RouteLayout path="/contact" exact component={ContactUs} />
         <RouteLayout
