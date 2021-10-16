@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
     :root {
       --primary-color: ${constants.colors.primaryColor};
       --secondary-color: ${constants.colors.secondaryColor};
+      --background-color:  ${constants.colors.backgroundColor};
     }
     html {
       box-sizing: border-box;
@@ -12,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
       animation: fadeInAnimation ease 1s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      background-color: ${constants.colors.backgroundColor};
+      background-color: var(---background-color);
 
       @keyframes fadeInAnimation {
           0% {
@@ -41,6 +42,12 @@ const GlobalStyles = createGlobalStyle`
   }
   img {
     width: 100%;
+  }
+  .stopScroll {
+    overflow: hidden;
+  }
+  #recaptcha {
+    margin-bottom: 1rem;
   }
 `;
 

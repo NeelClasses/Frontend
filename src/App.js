@@ -9,6 +9,8 @@ import Login from "./components/Login";
 import Courses from "./components/Courses";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./constants/theme";
+import CourseDetails from "./components/CourseDetails";
+import AdminPanel from "./components/Admin";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <RouteLayout path="/courses" exact component={Courses} />
           <RouteLayout path="/about" exact component={AboutUs} />
           <RouteLayout path="/contact" exact component={ContactUs} />
+          <RouteLayout path="/course" component={CourseDetails} />
           <RouteLayout
             path="/signup"
             exact
@@ -30,6 +33,12 @@ function App() {
             path="/login"
             exact
             component={Login}
+            isFullScreen={true}
+          />
+          <RouteLayout
+            path="/admin"
+            exact
+            component={AdminPanel}
             isFullScreen={true}
           />
         </Switch>
