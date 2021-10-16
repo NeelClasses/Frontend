@@ -83,6 +83,7 @@ export const SliderWrapper = styled.div`
 export const SliderHeading = styled.h1`
   text-align: center;
   margin-bottom: 2rem;
+  color: var(--primary-color);
   @media only screen and (max-width: 768px) {
     font-size: 24px;
   }

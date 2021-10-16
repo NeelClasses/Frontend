@@ -80,6 +80,11 @@ const Header = () => {
                 key={index}
                 isSidebar={true}
                 onClick={() => onLinksClicked(link.to)}
+                isActive={
+                  link.to === "/"
+                    ? pathname === "/"
+                    : pathname.includes(link.to)
+                }
               >
                 {link.label}
               </StyledLink>

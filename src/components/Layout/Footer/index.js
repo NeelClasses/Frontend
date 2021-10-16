@@ -58,7 +58,7 @@ const Footer = () => {
               </span>
             </Address>
             <Phone>
-              <FontAwesomeIcon icon={faPhone} rotation={90} color="#002a45" />
+              <FontAwesomeIcon icon={faPhone} rotation={90} />
               <Links>
                 {constants.contactUsDetails.phones.map((phone) => (
                   <a href={`tel:${phone}`}>{phone}</a>

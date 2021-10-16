@@ -80,6 +80,7 @@ export const GetInTouch = styled.div`
   }
   @media only screen and (max-width: 592px) {
     margin-left: 0;
+    align-self: flex-start;
   }
 `;
 
