@@ -1,7 +1,6 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Plyr from "plyr-react";
-import "plyr-react/dist/plyr.css";
 import React, { useState } from "react";
 import {
   CloseButton,
