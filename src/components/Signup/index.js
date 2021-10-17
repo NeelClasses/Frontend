@@ -17,8 +17,10 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import firebase from "../../firebase";
 
-const Signup = () => {
+const Signup = (props) => {
   const [inputs, setInputs] = useState({
       fullName: "",
       number: "",
@@ -37,19 +39,79 @@ const Signup = () => {
         ...errors,
         [name]: validations(name, value),
       });
-    },
-    handleSubmit = (e) => {
-      e.preventDefault();
-      const fullNameError = validations("fullName", inputs.fullName),
-        numberError = validations("number", inputs.number);
-      setErrors({
-        fullName: fullNameError,
-        number: numberError,
-      });
-      if (fullNameError === "" && numberError === "") {
-        alert("Submitted");
-      }
     };
+
+  const [otp, setOtp] = useState("");
+  const [otpVisibility, setOtpvisibility] = useState(true);
+  const [firebaseEvent, setEvent] = useState();
+
+  function VerifyOtp(e) {
+    e.preventDefault();
+    let code = { otp }.otp;
+    if (code == null) return;
+    firebaseEvent
+      .confirm(code)
+      .then(function (result) {
+        const SignUpInfo = {
+          name: inputs.fullName,
+          mobile: inputs.number,
+        };
+
+        axios
+          .post(`${process.env.REACT_APP_API_URL}/adduser`, SignUpInfo)
+          .then((res) => {
+            if (res.data === "Done") {
+              props.history.push("/login");
+            } else {
+              alert("You're account already exist");
+            }
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      })
+      .catch((error) => console.log(error));
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const fullNameError = validations("fullName", inputs.fullName),
+      numberError = validations("number", inputs.number);
+    setErrors({
+      fullName: fullNameError,
+      number: numberError,
+    });
+    if (fullNameError === "" && numberError === "") {
+      const SignUpInfo = {
+        name: inputs.fullName,
+        mobile: inputs.number,
+      };
+
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
+        .then((res) => {
+          console.log(res);
+          if (res.data === "Done") {
+            let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
+
+            firebase
+              .auth()
+              .signInWithPhoneNumber(`+91${SignUpInfo.mobile}`, recaptcha)
+              .then(function (e) {
+                setOtpvisibility(false);
+                setEvent(e);
+              })
+              .catch((err) => {
+                alert(err);
+              });
+          } else {
+            alert("Account Already Exists! Please Log In");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
   return (
     <SignupWrapper>
       <LeftSection>
@@ -86,9 +148,42 @@ const Signup = () => {
             error={errors.number !== ""}
             helperText={errors.number}
           />
-          <Button fullWidth variant="contained" type="submit">
-            Sign Up
-          </Button>
+          {otpVisibility && (
+            <div
+              id="recaptcha"
+              className="recaptcha"
+              hidden={!otpVisibility}
+            ></div>
+          )}
+          {!otpVisibility && (
+            <TextElement
+              id="outlined-basic"
+              label="Enter OTP"
+              variant="outlined"
+              name="otp"
+              size="small"
+              type="number"
+              fullWidth
+              value={otp}
+              onChange={(event) => setOtp(event.target.value)}
+              required
+            />
+          )}
+          {!otpVisibility && (
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={VerifyOtp}
+              hidden={otpVisibility}
+            >
+              Verify Otp
+            </Button>
+          )}
+          {otpVisibility && (
+            <Button fullWidth variant="contained" type="submit">
+              Sign Up
+            </Button>
+          )}
           <BottomText>
             Already a member? <BottomLink to="/login">Log in</BottomLink>
           </BottomText>

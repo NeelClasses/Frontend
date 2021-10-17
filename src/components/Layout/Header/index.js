@@ -15,9 +15,12 @@ import { Content } from "../../../globalStyles";
 import Logo from "../../../constants/Images/Logo";
 import { constants } from "../../../constants";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../../store/actions";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
+    { userInfo } = useSelector((state) => state.userInfo),
     toggleSidebar = () => {
       setIsSidebarActive((st) => !st);
       if (!isSidebarActive) {
@@ -27,12 +30,17 @@ const Header = () => {
       }
     },
     history = useHistory(),
+    dispatch = useDispatch(),
     { pathname } = useLocation();
+  console.log(userInfo);
   const onLinksClicked = (link) => {
-    setIsSidebarActive(false);
-    history.push(link);
-    document.body.style.overflow = "auto";
-  };
+      setIsSidebarActive(false);
+      history.push(link);
+      document.body.style.overflow = "auto";
+    },
+    handleLogout = () => {
+      dispatch(logout());
+    };
   return (
     <Content>
       <HeaderWrapper>
@@ -57,7 +65,7 @@ const Header = () => {
           ))}
         </Links>
         <Buttons isSidebar={false}>
-          {constants.headerDetails.ctaButtons.map((button, index) => (
+          {/* {constants.headerDetails.ctaButtons.map((button, index) => (
             <Button
               key={index}
               isPrimary={button.isPrimary}
@@ -66,7 +74,30 @@ const Header = () => {
             >
               {button.label}
             </Button>
-          ))}
+          ))} */}
+          {!userInfo?.id && (
+            <Button
+              isPrimary={true}
+              isSidebar={false}
+              onClick={() => onLinksClicked("/signup")}
+            >
+              Sign Up
+            </Button>
+          )}
+          {!userInfo?.id && (
+            <Button
+              isPrimary={false}
+              isSidebar={false}
+              onClick={() => onLinksClicked("/login")}
+            >
+              Log In
+            </Button>
+          )}
+          {userInfo?.id && (
+            <Button isPrimary={false} isSidebar={false} onClick={handleLogout}>
+              Log Out
+            </Button>
+          )}
         </Buttons>
         <ToggleButton isActive={isSidebarActive} onClick={toggleSidebar}>
           {isSidebarActive ? "Close" : "Menu"}
@@ -80,13 +111,18 @@ const Header = () => {
                 key={index}
                 isSidebar={true}
                 onClick={() => onLinksClicked(link.to)}
+                isActive={
+                  link.to === "/"
+                    ? pathname === "/"
+                    : pathname.includes(link.to)
+                }
               >
                 {link.label}
               </StyledLink>
             ))}
           </Links>
           <Buttons isSidebar={true}>
-            {constants.headerDetails.ctaButtons.map((button, index) => (
+            {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button
                 key={index}
                 isPrimary={button.isPrimary}
@@ -95,7 +131,30 @@ const Header = () => {
               >
                 {button.label}
               </Button>
-            ))}
+            ))} */}
+            {!userInfo?.id && (
+              <Button
+                isPrimary={true}
+                isSidebar={true}
+                onClick={() => onLinksClicked("/signup")}
+              >
+                Sign Up
+              </Button>
+            )}
+            {!userInfo?.id && (
+              <Button
+                isPrimary={false}
+                isSidebar={true}
+                onClick={() => onLinksClicked("/login")}
+              >
+                Log In
+              </Button>
+            )}
+            {userInfo?.id && (
+              <Button isPrimary={false} isSidebar={true} onClick={handleLogout}>
+                Log Out
+              </Button>
+            )}
           </Buttons>
         </SidebarWrapper>
       </Sidebar>

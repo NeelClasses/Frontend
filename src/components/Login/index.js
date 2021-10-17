@@ -17,8 +17,17 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
+import firebase from "../../firebase";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/actions";
 
-const Login = () => {
+const Login = (props) => {
+  const [otp, setOtp] = useState("");
+  const [otpVisibility, setOtpvisibility] = useState(true);
+  const [firebaseEvent, setEvent] = useState();
+  const [setLogin] = useState(false);
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
       number: "",
     }),
@@ -43,9 +52,72 @@ const Login = () => {
         number: numberError,
       });
       if (numberError === "") {
-        alert("Submitted");
+        const SignUpInfo = {
+          name: "",
+          mobile: "+91" + inputs.number,
+        };
+
+        axios
+          .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
+          .then((res) => {
+            console.log(res);
+            if (res.data !== "Done") {
+              let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
+              firebase
+                .auth()
+                .signInWithPhoneNumber(SignUpInfo.mobile, recaptcha)
+                .then(function (e) {
+                  setOtpvisibility(false);
+                  setEvent(e);
+                })
+                .catch((err) => {
+                  alert(err);
+                });
+            } else {
+              alert("Create your account first");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       }
     };
+  function VerifyOtp(e) {
+    e.preventDefault();
+    const code = otp;
+    if (code == null) return;
+    firebaseEvent
+      .confirm(code)
+      .then(function (result) {
+        var credential = firebase.auth.PhoneAuthProvider.credential(
+          firebaseEvent.verificationId,
+          code
+        );
+        firebase.auth().signInWithCredential(credential);
+        console.log(result);
+        const LogInfo = {
+          mobile: result.user.phoneNumber,
+        };
+
+        axios
+          .post(`${process.env.REACT_APP_API_URL}/getUser`, LogInfo)
+          .then((res) => {
+            console.log("at login", res.data[0]);
+            dispatch(login({ ...res.data[0] }));
+            if (res.data[0].role === "Admin") {
+              props.history.push("/admin");
+            } else {
+              props.history.push("/");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+
+        setLogin(true);
+      })
+      .catch((error) => console.log(error));
+  }
   return (
     <SignupWrapper>
       <LeftSection>
@@ -70,9 +142,42 @@ const Login = () => {
             error={errors.number !== ""}
             helperText={errors.number}
           />
-          <Button fullWidth variant="contained" type="submit">
-            Log In
-          </Button>
+          {otpVisibility && (
+            <div
+              id="recaptcha"
+              className="recaptcha"
+              hidden={!otpVisibility}
+            ></div>
+          )}
+          {!otpVisibility && (
+            <TextElement
+              id="outlined-basic"
+              label="Enter OTP"
+              variant="outlined"
+              name="otp"
+              size="small"
+              type="number"
+              fullWidth
+              value={otp}
+              onChange={(event) => setOtp(event.target.value)}
+              required
+            />
+          )}
+          {!otpVisibility && (
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={VerifyOtp}
+              hidden={otpVisibility}
+            >
+              Verify Otp
+            </Button>
+          )}
+          {otpVisibility && (
+            <Button fullWidth variant="contained" type="submit">
+              Log In
+            </Button>
+          )}
           <BottomText>
             Don't have an account? <BottomLink to="/signup">Sign up</BottomLink>
           </BottomText>
