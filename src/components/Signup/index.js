@@ -44,7 +44,6 @@ const Signup = (props) => {
   const [otp, setOtp] = useState("");
   const [otpVisibility, setOtpvisibility] = useState(true);
   const [firebaseEvent, setEvent] = useState();
-  const [setVerify] = useState(true);
 
   function VerifyOtp(e) {
     e.preventDefault();
@@ -62,7 +61,6 @@ const Signup = (props) => {
           .post(`${process.env.REACT_APP_API_URL}/adduser`, SignUpInfo)
           .then((res) => {
             if (res.data === "Done") {
-              setVerify(false);
               props.history.push("/login");
             } else {
               alert("You're account already exist");
@@ -91,6 +89,7 @@ const Signup = (props) => {
       axios
         .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
         .then((res) => {
+          console.log(res);
           if (res.data === "Done") {
             let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
 

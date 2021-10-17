@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   faEdit,
@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TableComponent = (props) => {
   const [setStatus] = useState("NOTDELETED");
-  useEffect(() => {});
 
   const deleteCourse = async (course) => {
     var s = window.confirm("Are you really want to delete this course");
@@ -27,7 +26,7 @@ const TableComponent = (props) => {
       console.log(`Post Error ${error}`);
     }
   };
-
+  console.log(props.courses);
   return (
     <div className="table-component">
       <table className="table-body">
@@ -65,9 +64,7 @@ const TableComponent = (props) => {
                     <span>
                       <FontAwesomeIcon icon={faHandPointRight} />
                     </span>
-                    <Link to={`/course/${course.courseName}`}>
-                      View Contents
-                    </Link>
+                    <Link to={`/course/${course.courseName}`}>View</Link>
                   </button>
                 </td>
                 <td>{course.coursePrice}</td>
@@ -108,4 +105,4 @@ const TableComponent = (props) => {
   );
 };
 
-export default withRouter(TableComponent);
+export default TableComponent;

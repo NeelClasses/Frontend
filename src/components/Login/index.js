@@ -19,12 +19,15 @@ import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/actions";
 
 const Login = (props) => {
   const [otp, setOtp] = useState("");
   const [otpVisibility, setOtpvisibility] = useState(true);
   const [firebaseEvent, setEvent] = useState();
   const [setLogin] = useState(false);
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
       number: "",
     }),
@@ -57,7 +60,8 @@ const Login = (props) => {
         axios
           .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
           .then((res) => {
-            if (res.data === "Done") {
+            console.log(res);
+            if (res.data !== "Done") {
               let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
               firebase
                 .auth()
@@ -80,8 +84,7 @@ const Login = (props) => {
     };
   function VerifyOtp(e) {
     e.preventDefault();
-    let code = { otp }.otp;
-
+    const code = otp;
     if (code == null) return;
     firebaseEvent
       .confirm(code)
@@ -99,12 +102,8 @@ const Login = (props) => {
         axios
           .post(`${process.env.REACT_APP_API_URL}/getUser`, LogInfo)
           .then((res) => {
-            // // console.log(res.data[0].name);
-            // // console.log(res.data[0].mobile);
-            // setCookie("name", res.data[0].name, { path: "/" });
-            // setCookie("mobile", res.data[0].mobile, { path: "/" });
-            // setCookie("uid", res.data[0].id, { path: "/" });
-            // setCookie("role", res.data[0].role, { path: "/" });
+            console.log("at login", res.data[0]);
+            dispatch(login({ ...res.data[0] }));
             if (res.data[0].role === "Admin") {
               props.history.push("/admin");
             } else {

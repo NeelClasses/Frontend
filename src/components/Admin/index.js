@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   faBook,
   faSignOutAlt,
@@ -12,8 +12,12 @@ import axios from "axios";
 import { loadProgressBar } from "axios-progress-bar";
 import UploadForm from "./UploadForm";
 import AddEditForm from "./AddEditForm";
-import firebase from "../../firebase";
-import { useCookies } from "react-cookie";
+import "../../constants/css/App.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/actions";
+import { Link } from "react-router-dom";
+import { NavIcon } from "../Layout/Header/styled";
+import Logo from "../../constants/Images/Logo";
 
 const AdminPanel = (props) => {
   const [loadingForCourses, setLoadingForCourses] = useState(0);
@@ -26,44 +30,8 @@ const AdminPanel = (props) => {
   const [uploadClick, setOnUploadClick] = useState(false);
   const [logoutClick, setOnLogoutClick] = useState(false);
   const [course, setCourse] = useState({});
-  const [cookie, removeCookie] = useCookies(["uid", "name", "mobile", "role"]);
 
-  const checkLogin = useCallback(() => {
-    if ({ cookie }.cookie.name === undefined) {
-      props.history.push("/");
-      return false;
-    } else {
-      console.log("Already logged in");
-      if ({ cookie }.cookie.role === "Admin") {
-        console.log("Logged in as an admin");
-      } else {
-        props.history.push("/");
-      }
-      // props.history.push("/");
-      return true;
-    }
-  }, [cookie, props.history]);
-
-  useEffect(() => {
-    checkLogin();
-  }, [checkLogin]);
-
-  function logOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        removeCookie("name");
-        removeCookie("mobile");
-        removeCookie("uid");
-        removeCookie("role");
-        console.log("Signout successfully");
-        props.history.push("/");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const dispatch = useDispatch();
   const onCourseClick = () => {
     props.history.push("/admin/courses");
     getDataForCourses();
@@ -102,7 +70,8 @@ const AdminPanel = (props) => {
     setOnAddEditClick(false);
     setOnUploadClick(false);
     setOnLogoutClick(true);
-    logOut();
+    dispatch(logout());
+    props.history.push("/");
   };
 
   const getDataForCourses = async () => {
@@ -140,10 +109,12 @@ const AdminPanel = (props) => {
     <div>
       <div className="admin-panel-container">
         <div className="admin-header">
-          <div className="heading-main">
-            <div className="admin-header-brand">NEEL</div>
-            <div className="sub"> Maths Classes</div>
-          </div>
+          <Link to="/">
+            <NavIcon>
+              <Logo />
+              <span>Neel Classes</span>
+            </NavIcon>
+          </Link>
           <div className="admin-header-title">Admin Panel</div>
         </div>
         <div className="admin-body">
@@ -156,7 +127,7 @@ const AdminPanel = (props) => {
                 <span className="admin-icons">
                   <FontAwesomeIcon icon={faBook} />
                 </span>
-                Course
+                Courses
               </button>
               <button
                 className={`course ${addEditClick ? "active" : ""}`}
@@ -174,7 +145,7 @@ const AdminPanel = (props) => {
                 <span className="admin-icons">
                   <FontAwesomeIcon icon={faVideo} />
                 </span>
-                Upload Video / Notes
+                Upload Video/Notes
               </button>
               {/* <button className="course"><span className="admin-icons"><FontAwesomeIcon icon={faFilePdf} /></span>Notes</button> */}
             </div>
