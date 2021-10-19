@@ -74,7 +74,7 @@ export const ContentSection = styled.div`
 `;
 
 export const GetInTouch = styled.div`
-  max-width: 300px;
+  max-width: 400px;
   @media only screen and (max-width: 768px) {
     margin-bottom: 2rem;
   }

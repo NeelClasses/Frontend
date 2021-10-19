@@ -11,8 +11,12 @@ export const constants = {
     backgroundColor: "#fffcf7",
   },
   contactUsDetails: {
-    address: "6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon.",
-    pin: "425105",
+    addresses: {
+      Dharangaon: "6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon.",
+      DharangaonPin: "425105",
+      Jalgaon:
+        "Ratneshwar Nivas, Near Saptashrungi Apartment, \n Shri. Mahalakshmi Dugdhalaya, Gat No. 60/152, Shiv Colony, Jalgaon.",
+    },
     phones: ["+91-8767-346-075", "+91-9545-583-393"],
     emails: ["rahulcricket91@gmail.com"],
     mapSource:
