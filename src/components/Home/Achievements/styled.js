@@ -44,6 +44,4 @@ export const Image2 = styled.img`
 export const ModalImage = styled.img`
   max-height: 90vh;
   max-width: 80vw;
-  cursor: ${({ isZoom }) => (isZoom ? "zoom-out" : "zoom-in")};
-  transform: ${({ isZoom }) => (isZoom ? "scale(2)" : "none")};
 `;
