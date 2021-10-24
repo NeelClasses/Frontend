@@ -57,21 +57,29 @@ export const Links = styled.div`
 `;
 
 export const StyledLink = styled.button`
-  padding: 0 1rem;
+  padding: 0.5rem;
   text-decoration: none;
   outline: none;
   text-align: left;
   color: ${(props) =>
     props.isActive ? "var(--secondary-color)" : "var(--primary-color)"};
   font-weight: 400;
+  font-size: 1rem;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
   @media only screen and (max-width: 840px) {
-    padding: 1rem 1.5rem;
+    padding: 0.7rem 0;
     border-bottom: 1px solid #eaeaea;
     width: 100%;
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+    &:first-child {
+      border-top: 1px solid #eaeaea;
+    }
   }
 `;
 
@@ -93,7 +101,7 @@ export const DropDownLink = styled.div`
 export const DropDown = styled.div`
   position: absolute;
   top: 30px;
-  background: #dedede;
+  background: var(--background-color);
   z-index: 999999;
   display: none;
   /* width: 100%; */
@@ -105,8 +113,11 @@ export const DropDownHeading = styled.p`
 
 export const DropDownItem = styled.div`
   width: 100%;
-  padding: 4px 0;
+  padding: 1px 0;
   border-bottom: 1px solid var(--primary-color);
+  &:last-child {
+    border: none;
+  }
 `;
 
 export const Buttons = styled.div`
@@ -139,7 +150,7 @@ export const Button = styled.button`
     background-color: #fff;
   }
   @media only screen and (max-width: 840px) {
-    width: 6.5rem;
+    width: 7rem;
     margin: 0.5rem 0 !important;
     text-align: center;
   }
@@ -199,7 +210,6 @@ export const AccordionWrapper = styled.div`
 
 export const AccordionHeading = styled.button`
   display: flex;
-  background-color: #fff;
   border: none;
   width: 100%;
   color: var(--primary-color);
@@ -231,7 +241,7 @@ export const AccordionContent = styled.div`
 `;
 
 export const AccordionText = styled.div`
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   /* border-bottom: ${({ isActive }) =>
     isActive ? "1px solid #e3e3e3" : "none"}; */
   text-align: left;
