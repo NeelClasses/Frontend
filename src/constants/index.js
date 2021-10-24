@@ -11,8 +11,12 @@ export const constants = {
     backgroundColor: "#fffcf7",
   },
   contactUsDetails: {
-    address: "6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon.",
-    pin: "425105",
+    addresses: {
+      Dharangaon: "6/1, Chintamani Moraya Nagar, Dharangaon, Dist. Jalgaon.",
+      DharangaonPin: "425105",
+      Jalgaon:
+        "Ratneshwar Nivas, Near Saptashrungi Apartment, \n Shri. Mahalakshmi Dugdhalaya, Gat No. 60/152, Shiv Colony, Jalgaon.",
+    },
     phones: ["+91-8767-346-075", "+91-9545-583-393"],
     emails: ["rahulcricket91@gmail.com"],
     mapSource:
@@ -24,6 +28,60 @@ export const constants = {
       { label: "Courses", to: "/courses" },
       { label: "Contact Us", to: "/contact" },
       { label: "About Us", to: "/about" },
+    ],
+    dropDownDetails: [
+      {
+        heading: "Home",
+        content: [
+          { label: "Colour Chart", link: "/" },
+          { label: "Popular Courses", link: "/" },
+          { label: "Notes", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "Engg",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Mech. Engg", link: "/" },
+          { label: "Civil Engg.", link: "/" },
+          { label: "Videos", link: "/" },
+          { label: "MCQ", link: "/" },
+        ],
+      },
+      {
+        heading: "Diploma",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Mech. Engg", link: "/" },
+          { label: "Civil Engg.", link: "/" },
+          { label: "Videos", link: "/" },
+          { label: "MCQ", link: "/" },
+        ],
+      },
+      {
+        heading: "GATE",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Aptitude", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "11th 12th",
+        content: [
+          { label: "Regular", link: "/" },
+          { label: "MHTCET and JEE", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "BSc",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
     ],
     ctaButtons: [
       { label: "Sign up", to: "/signup", isPrimary: true },

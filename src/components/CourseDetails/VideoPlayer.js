@@ -1,13 +1,7 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Plyr from "plyr-react";
 import React, { useState } from "react";
-import {
-  CloseButton,
-  ModalWrapper,
-  VideoContainer,
-  VideoModalContainer,
-} from "./styled";
+import { VideoContainer } from "./styled";
+import Modal from "../Modal";
 
 const VideoPlayer = ({ isOpen, toggleModal, videoSource }) => {
   const [source] = useState({
@@ -18,18 +12,16 @@ const VideoPlayer = ({ isOpen, toggleModal, videoSource }) => {
       },
     ],
   });
+  const VideoModal = () => {
+    return (
+      <VideoContainer>
+        <Plyr source={source} options={{}} />
+      </VideoContainer>
+    );
+  };
   return (
     isOpen && (
-      <ModalWrapper open={isOpen}>
-        <VideoModalContainer>
-          <VideoContainer>
-            <Plyr source={source} options={{}} />
-          </VideoContainer>
-          <CloseButton onClick={toggleModal}>
-            <FontAwesomeIcon icon={faTimes} size="2x" color="#fff" />
-          </CloseButton>
-        </VideoModalContainer>
-      </ModalWrapper>
+      <Modal open={isOpen} Component={VideoModal} onClose={toggleModal} />
     )
   );
 };

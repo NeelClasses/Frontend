@@ -39,8 +39,17 @@ const ContactUs = () => {
             <Address>
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               <span>
-                {constants.contactUsDetails.address}
-                <br /> Pin: {constants.contactUsDetails.pin}
+                <h4>Dharangaon</h4>
+                {constants.contactUsDetails.addresses.Dharangaon}
+                <br /> Pin: {constants.contactUsDetails.addresses.DharangaonPin}
+              </span>
+            </Address>
+            <Address>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <span>
+                <h4>Jalgaon</h4>
+                {constants.contactUsDetails.addresses.Jalgaon}
+                <br /> Pin: {constants.contactUsDetails.addresses.DharangaonPin}
               </span>
             </Address>
             <Phone>

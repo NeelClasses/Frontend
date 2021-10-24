@@ -53,8 +53,8 @@ const Footer = () => {
             <Address>
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               <span>
-                {constants.contactUsDetails.address}
-                <br /> Pin: {constants.contactUsDetails.pin}
+                {constants.contactUsDetails.addresses.Dharangaon}
+                <br /> Pin: {constants.contactUsDetails.addresses.DharangaonPin}
               </span>
             </Address>
             <Phone>
