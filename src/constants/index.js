@@ -29,6 +29,60 @@ export const constants = {
       { label: "Contact Us", to: "/contact" },
       { label: "About Us", to: "/about" },
     ],
+    dropDownDetails: [
+      {
+        heading: "Home",
+        content: [
+          { label: "Colour Chart", link: "/" },
+          { label: "Popular Courses", link: "/" },
+          { label: "Notes", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "Engg",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Mech. Engg", link: "/" },
+          { label: "Civil Engg.", link: "/" },
+          { label: "Videos", link: "/" },
+          { label: "MCQ", link: "/" },
+        ],
+      },
+      {
+        heading: "Diploma",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Mech. Engg", link: "/" },
+          { label: "Civil Engg.", link: "/" },
+          { label: "Videos", link: "/" },
+          { label: "MCQ", link: "/" },
+        ],
+      },
+      {
+        heading: "GATE",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Aptitude", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "11th 12th",
+        content: [
+          { label: "Regular", link: "/" },
+          { label: "MHTCET and JEE", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+      {
+        heading: "BSc",
+        content: [
+          { label: "Math", link: "/" },
+          { label: "Videos", link: "/" },
+        ],
+      },
+    ],
     ctaButtons: [
       { label: "Sign up", to: "/signup", isPrimary: true },
       { label: "Log in", to: "/login", isPrimary: false },

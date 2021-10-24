@@ -1,10 +1,6 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  CloseButton,
-  ModalWrapper,
-  VideoModalContainer,
-} from "../CourseDetails/styled";
+import { CloseButton, ModalWrapper, VideoModalContainer } from "./styled";
 
 const Modal = ({ Component, isOpen, onClose }) => {
   return (

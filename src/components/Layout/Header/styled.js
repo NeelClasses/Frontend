@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.nav`
-  overflow: hidden;
   padding: 1rem 0;
   display: flex;
   z-index: 9999;
@@ -49,7 +48,7 @@ export const ToggleSection = styled.div`
 export const Links = styled.div`
   display: flex;
   align-items: center;
-  @media only screen and (max-width: 840px) {
+  @media only screen and (max-width: 1098px) {
     display: ${(props) => (props.isSidebar ? "flex" : "none")};
     justify-content: center;
     flex-direction: column;
@@ -61,6 +60,7 @@ export const StyledLink = styled.button`
   padding: 0 1rem;
   text-decoration: none;
   outline: none;
+  text-align: left;
   color: ${(props) =>
     props.isActive ? "var(--secondary-color)" : "var(--primary-color)"};
   font-weight: 400;
@@ -72,13 +72,46 @@ export const StyledLink = styled.button`
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #eaeaea;
     width: 100%;
-    text-align: right;
   }
+`;
+
+export const DropDownLink = styled.div`
+  position: relative;
+  &:hover,
+  &:focus,
+  &:focus-within {
+    background: var(--primary-color);
+    & > div {
+      display: block;
+    }
+    & > p {
+      color: #fff;
+    }
+  }
+`;
+
+export const DropDown = styled.div`
+  position: absolute;
+  top: 30px;
+  background: #dedede;
+  z-index: 999999;
+  display: none;
+  /* width: 100%; */
+`;
+
+export const DropDownHeading = styled.p`
+  padding: 4px 1rem;
+`;
+
+export const DropDownItem = styled.div`
+  width: 100%;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--primary-color);
 `;
 
 export const Buttons = styled.div`
   display: flex;
-  @media only screen and (max-width: 840px) {
+  @media only screen and (max-width: 1098px) {
     display: ${(props) => (props.isSidebar ? "flex" : "none")};
     justify-content: center;
     flex-direction: column;
@@ -114,6 +147,7 @@ export const Button = styled.button`
 
 export const ToggleButton = styled.div`
   display: none;
+  cursor: pointer;
   border: 1px solid var(--primary-color);
   padding: 0.3rem 0.5rem;
   font-size: 14px;
@@ -121,7 +155,7 @@ export const ToggleButton = styled.div`
   color: ${(props) => (props.isActive ? "#fff" : "var(--primary-color)")};
   background-color: ${(props) =>
     props.isActive ? "var(--primary-color)" : "#fff"};
-  @media only screen and (max-width: 840px) {
+  @media only screen and (max-width: 1098px) {
     display: block;
   }
 `;
@@ -151,4 +185,54 @@ export const SidebarWrapper = styled.div`
   position: absolute;
   width: 70%;
   right: ${(props) => (props.isSidebar ? "0px" : "-400px")};
+`;
+
+export const AccordionWrapper = styled.div`
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  border-bottom: 1px solid #eaeaea;
+  @media only screen and (max-width: 414px) {
+    padding: 0.6rem;
+  }
+`;
+
+export const AccordionHeading = styled.button`
+  display: flex;
+  background-color: #fff;
+  border: none;
+  width: 100%;
+  color: var(--primary-color);
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+`;
+
+export const HeadingText = styled.span``;
+
+export const PlusIcon = styled.span`
+  color: var(--primary-color);
+  font-size: 29px;
+  line-height: 29px;
+  font-weight: 500;
+  align-self: center;
+  transform: ${(props) => (props.isActive ? "rotate(45deg)" : "rotate(0deg)")};
+  transition: all 400ms ease-in-out;
+`;
+
+export const AccordionContent = styled.div`
+  color: #1f1f1f;
+  max-height: ${(props) => (props.isActive ? "9999px" : 0)};
+  background-color: var(---background-color);
+  overflow: hidden;
+  transition: all
+    ${({ isActive }) =>
+      isActive ? "400ms cubic-bezier(1,0,1,0)" : "400ms cubic-bezier(0,1,0,1)"};
+`;
+
+export const AccordionText = styled.div`
+  padding: 1rem 0;
+  /* border-bottom: ${({ isActive }) =>
+    isActive ? "1px solid #e3e3e3" : "none"}; */
+  text-align: left;
 `;

@@ -8,6 +8,15 @@ import {
   Sidebar,
   ToggleButton,
   SidebarWrapper,
+  DropDown,
+  DropDownItem,
+  DropDownLink,
+  DropDownHeading,
+  AccordionContent,
+  AccordionHeading,
+  AccordionText,
+  AccordionWrapper,
+  HeadingText,
 } from "./styled";
 import { useState } from "react";
 import { useHistory } from "react-router";
@@ -17,9 +26,12 @@ import { constants } from "../../../constants";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../store/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
+    [activeNotes, setActiveNotes] = useState(false),
     { userInfo } = useSelector((state) => state.userInfo),
     toggleSidebar = () => {
       setIsSidebarActive((st) => !st);
@@ -51,7 +63,7 @@ const Header = () => {
           </NavIcon>
         </Link>
         <Links isSidebar={false}>
-          {constants.headerDetails.navLinks.map((link, index) => (
+          {/* {constants.headerDetails.navLinks.map((link, index) => (
             <StyledLink
               key={index}
               isSidebar={false}
@@ -62,7 +74,43 @@ const Header = () => {
             >
               {link.label}
             </StyledLink>
+          ))} */}
+          {constants.headerDetails.dropDownDetails.map((dropDown, index) => (
+            <DropDownLink key={index}>
+              <DropDownHeading>
+                {dropDown.heading} <FontAwesomeIcon icon={faCaretDown} />
+              </DropDownHeading>
+              <DropDown>
+                {dropDown.content.map((item, index) => (
+                  <DropDownItem key={index}>
+                    <StyledLink>{item.label}</StyledLink>
+                  </DropDownItem>
+                ))}
+              </DropDown>
+            </DropDownLink>
           ))}
+          <DropDownLink>
+            <DropDownHeading>
+              Diploma <FontAwesomeIcon icon={faCaretDown} />
+            </DropDownHeading>
+            <DropDown>
+              <DropDownItem>
+                <StyledLink>Maths</StyledLink>
+              </DropDownItem>
+              <DropDownItem>
+                <StyledLink>Mech. Engg.</StyledLink>
+              </DropDownItem>
+              <DropDownItem>
+                <StyledLink>Civil. Engg.</StyledLink>
+              </DropDownItem>
+              <DropDownItem>
+                <StyledLink>Videos</StyledLink>
+              </DropDownItem>
+              <DropDownItem>
+                <StyledLink>MCQ</StyledLink>
+              </DropDownItem>
+            </DropDown>
+          </DropDownLink>
         </Links>
         <Buttons isSidebar={false}>
           {/* {constants.headerDetails.ctaButtons.map((button, index) => (
@@ -105,7 +153,7 @@ const Header = () => {
       </HeaderWrapper>
       <Sidebar active={isSidebarActive}>
         <SidebarWrapper isSidebar={isSidebarActive}>
-          <Links isSidebar={true}>
+          {/* <Links isSidebar={true}>
             {constants.headerDetails.navLinks.map((link, index) => (
               <StyledLink
                 key={index}
@@ -120,7 +168,34 @@ const Header = () => {
                 {link.label}
               </StyledLink>
             ))}
-          </Links>
+          </Links> */}
+          {constants.headerDetails.dropDownDetails.map((dropDown, index) => (
+            <AccordionWrapper
+              isActive={activeNotes === dropDown.heading}
+              key={index}
+            >
+              <AccordionHeading
+                onClick={() => {
+                  activeNotes === dropDown.heading
+                    ? setActiveNotes(null)
+                    : setActiveNotes(dropDown.heading);
+                }}
+              >
+                <HeadingText>{dropDown.heading}</HeadingText>
+                <FontAwesomeIcon
+                  icon={faCaretDown}
+                  rotation={activeNotes === dropDown.heading ? "180" : 0}
+                />
+              </AccordionHeading>
+              <AccordionContent isActive={activeNotes === dropDown.heading}>
+                <AccordionText isActive={activeNotes === dropDown.heading}>
+                  {dropDown.content.map((item, index) => (
+                    <StyledLink to="/">{item.label}</StyledLink>
+                  ))}
+                </AccordionText>
+              </AccordionContent>
+            </AccordionWrapper>
+          ))}
           <Buttons isSidebar={true}>
             {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button
