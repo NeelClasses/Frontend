@@ -23,7 +23,7 @@ import { useHistory } from "react-router";
 import { Content } from "../../../globalStyles";
 import Logo from "../../../constants/Images/Logo";
 import { constants } from "../../../constants";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../store/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,8 +42,8 @@ const Header = () => {
       }
     },
     history = useHistory(),
-    dispatch = useDispatch(),
-    { pathname } = useLocation();
+    dispatch = useDispatch();
+  // { pathname } = useLocation();
   console.log(userInfo);
   const onLinksClicked = (link) => {
       setIsSidebarActive(false);
