@@ -190,7 +190,7 @@ const Header = () => {
               <AccordionContent isActive={activeNotes === dropDown.heading}>
                 <AccordionText isActive={activeNotes === dropDown.heading}>
                   {dropDown.content.map((item, index) => (
-                    <StyledLink to="/">{item.label}</StyledLink>
+                    <StyledLink to="/" key={index}>{item.label}</StyledLink>
                   ))}
                 </AccordionText>
               </AccordionContent>

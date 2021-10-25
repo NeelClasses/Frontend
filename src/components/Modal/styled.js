@@ -82,6 +82,6 @@ export const CloseButton = styled.button`
   }
   @media only screen and (max-width: 500px) {
     right: -1rem;
-    top: -1rem;
+    top: -3rem;
   }
 `;
