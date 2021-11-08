@@ -94,6 +94,11 @@ export const StartButton = styled.button`
   background-color: var(--primary-color);
   border-radius: 20px;
   color: #fff;
+  cursor: pointer;
+  transition: 0.1s all ease-in;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Video = styled.iframe`
