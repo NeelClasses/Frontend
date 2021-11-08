@@ -36,7 +36,7 @@ export const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
+  z-index: 10000;
   animation: ${({ open }) =>
     `${
       open ? "modalFadeIn" : "modalFadeOut"

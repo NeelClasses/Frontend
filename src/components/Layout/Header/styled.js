@@ -70,7 +70,7 @@ export const StyledLink = styled.button`
     text-decoration: underline;
   }
   @media only screen and (max-width: 840px) {
-    padding: 0.7rem 0;
+    padding: 0.7rem 1rem;
     border-bottom: 1px solid #eaeaea;
     width: 100%;
     &:last-child {
@@ -85,6 +85,7 @@ export const StyledLink = styled.button`
 
 export const DropDownLink = styled.div`
   position: relative;
+  cursor: pointer;
   &:hover,
   &:focus,
   &:focus-within {
@@ -145,6 +146,7 @@ export const Button = styled.button`
       props.isPrimary ? "var(--primary-color)" : "var(--secondary-color)"};
   transition: 0.2s all ease-in-out;
   margin-top: ${(props) => (props.isSidebar ? "1rem" : "0px")};
+  cursor: pointer;
   &:hover {
     color: var(--primary-color);
     background-color: #fff;

@@ -28,6 +28,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../store/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false),
@@ -42,9 +43,8 @@ const Header = () => {
       }
     },
     history = useHistory(),
-    dispatch = useDispatch();
-  // { pathname } = useLocation();
-  console.log(userInfo);
+    dispatch = useDispatch(),
+    { pathname } = useLocation();
   const onLinksClicked = (link) => {
       setIsSidebarActive(false);
       history.push(link);
@@ -63,18 +63,6 @@ const Header = () => {
           </NavIcon>
         </Link>
         <Links isSidebar={false}>
-          {/* {constants.headerDetails.navLinks.map((link, index) => (
-            <StyledLink
-              key={index}
-              isSidebar={false}
-              onClick={() => onLinksClicked(link.to)}
-              isActive={
-                link.to === "/" ? pathname === "/" : pathname.includes(link.to)
-              }
-            >
-              {link.label}
-            </StyledLink>
-          ))} */}
           {constants.headerDetails.dropDownDetails.map((dropDown, index) => (
             <DropDownLink key={index}>
               <DropDownHeading>
@@ -89,40 +77,24 @@ const Header = () => {
               </DropDown>
             </DropDownLink>
           ))}
-          <DropDownLink>
-            <DropDownHeading>
-              Diploma <FontAwesomeIcon icon={faCaretDown} />
-            </DropDownHeading>
-            <DropDown>
-              <DropDownItem>
-                <StyledLink>Maths</StyledLink>
-              </DropDownItem>
-              <DropDownItem>
-                <StyledLink>Mech. Engg.</StyledLink>
-              </DropDownItem>
-              <DropDownItem>
-                <StyledLink>Civil. Engg.</StyledLink>
-              </DropDownItem>
-              <DropDownItem>
-                <StyledLink>Videos</StyledLink>
-              </DropDownItem>
-              <DropDownItem>
-                <StyledLink>MCQ</StyledLink>
-              </DropDownItem>
-            </DropDown>
-          </DropDownLink>
+          <StyledLink
+            key="/aboutUs"
+            isSidebar={false}
+            onClick={() => onLinksClicked("/about")}
+            isActive={pathname.includes("/about")}
+          >
+            About Us
+          </StyledLink>
+          <StyledLink
+            key="/aboutUs"
+            isSidebar={false}
+            onClick={() => onLinksClicked("/contact")}
+            isActive={pathname.includes("/contact")}
+          >
+            Contact
+          </StyledLink>
         </Links>
         <Buttons isSidebar={false}>
-          {/* {constants.headerDetails.ctaButtons.map((button, index) => (
-            <Button
-              key={index}
-              isPrimary={button.isPrimary}
-              isSidebar={false}
-              onClick={() => onLinksClicked(button.to)}
-            >
-              {button.label}
-            </Button>
-          ))} */}
           {!userInfo?.id && (
             <Button
               isPrimary={true}
@@ -153,22 +125,6 @@ const Header = () => {
       </HeaderWrapper>
       <Sidebar active={isSidebarActive}>
         <SidebarWrapper isSidebar={isSidebarActive}>
-          {/* <Links isSidebar={true}>
-            {constants.headerDetails.navLinks.map((link, index) => (
-              <StyledLink
-                key={index}
-                isSidebar={true}
-                onClick={() => onLinksClicked(link.to)}
-                isActive={
-                  link.to === "/"
-                    ? pathname === "/"
-                    : pathname.includes(link.to)
-                }
-              >
-                {link.label}
-              </StyledLink>
-            ))}
-          </Links> */}
           {constants.headerDetails.dropDownDetails.map((dropDown, index) => (
             <AccordionWrapper
               isActive={activeNotes === dropDown.heading}
@@ -190,12 +146,30 @@ const Header = () => {
               <AccordionContent isActive={activeNotes === dropDown.heading}>
                 <AccordionText isActive={activeNotes === dropDown.heading}>
                   {dropDown.content.map((item, index) => (
-                    <StyledLink to="/" key={index}>{item.label}</StyledLink>
+                    <StyledLink to="/" key={index}>
+                      {item.label}
+                    </StyledLink>
                   ))}
                 </AccordionText>
               </AccordionContent>
             </AccordionWrapper>
           ))}
+          <StyledLink
+            key="/aboutUs"
+            isSidebar={true}
+            onClick={() => onLinksClicked("/about")}
+            isActive={pathname.includes("/about")}
+          >
+            About Us
+          </StyledLink>
+          <StyledLink
+            key="/aboutUs"
+            isSidebar={true}
+            onClick={() => onLinksClicked("/contact")}
+            isActive={pathname.includes("/contact")}
+          >
+            Contact
+          </StyledLink>
           <Buttons isSidebar={true}>
             {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button

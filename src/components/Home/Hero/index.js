@@ -5,21 +5,29 @@ import {
   TextSection,
   TopText,
   TextWrapper,
-  SearchBarWrapper,
-  SearchBar,
-  SubmitButton,
+  StartButton,
+  Video,
 } from "./styled";
 import { Content } from "../../../globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
+import Modal from "../../Modal";
+const YTVideo = () => {
+  return (
+    <Video
+      src="https://www.youtube-nocookie.com/embed/YTJg8q9Q940"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></Video>
+  );
+};
 const Hero = () => {
-  const [searchInput, setSearchInput] = useState(""),
-    handleSubmit = () => {
-      if (searchInput) {
-        alert("Searching");
-      }
+  const [isModalOpen, setIsModalOpen] = useState(false),
+    toggleModal = () => {
+      setIsModalOpen(!isModalOpen);
     };
   return (
     <HeroWrapper>
@@ -33,23 +41,16 @@ const Hero = () => {
               sit amet Lorem ipsum dol sit amet Lorem ipsum dol sit amet Lorem
               ipsum dol sit amet Lorem ipsum dol sit amet
             </SubText>
-            <form onSubmit={handleSubmit}>
-              <SearchBarWrapper>
-                <SearchBar
-                  type="text"
-                  placeholder="Search for anything"
-                  id="searchBar"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                />
-                <SubmitButton type="submit">
-                  <FontAwesomeIcon icon={faSearch} />
-                </SubmitButton>
-              </SearchBarWrapper>
-            </form>
+            <StartButton onClick={toggleModal}>
+              Let's Start &nbsp;
+              <FontAwesomeIcon icon={faPlay} />
+            </StartButton>
           </TextSection>
         </TextWrapper>
       </Content>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} Component={YTVideo} onClose={toggleModal} />
+      )}
     </HeroWrapper>
   );
 };

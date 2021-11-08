@@ -85,3 +85,32 @@ export const SubmitButton = styled.button`
   font-size: 20px;
   border-radius: 0 20px 20px 0;
 `;
+
+export const StartButton = styled.button`
+  border: none;
+  outline: none;
+  padding: 7px 20px;
+  margin: 1rem 0;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.1s all ease-in;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const Video = styled.iframe`
+  width: 700px;
+  height: 400px;
+  border: none;
+  @media only screen and (max-width: 800px) {
+    width: 80vw;
+    height: 50vw;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 296px;
+    height: 185px;
+  }
+`;

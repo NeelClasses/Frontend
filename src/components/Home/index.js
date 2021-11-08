@@ -1,6 +1,7 @@
 import Achievements from "./Achievements";
 import { Carousel } from "./Carousel";
 import Hero from "./Hero";
+import Information from "./Information";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Hero />
       <Carousel />
       <Achievements />
+      <Information />
     </>
   );
 };
