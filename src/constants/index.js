@@ -91,7 +91,6 @@ export const constants = {
   footerDetails: {
     navLinks: [
       { label: "Home", to: "/" },
-      { label: "Courses", to: "/courses" },
       { label: "Contact us", to: "/contact" },
       { label: "About us", to: "/about" },
     ],

@@ -1,10 +1,10 @@
-import { Content } from "../../../globalStyles";
-import { ModalImage } from "../Achievements/styled";
+import { Content, Section } from "../../../globalStyles";
+import { Heading, ModalImage } from "../Achievements/styled";
 import Information1 from "../../../constants/Images/Information1.jpg";
 import Information2 from "../../../constants/Images/Information2.jpg";
 import { useEffect, useState } from "react";
 import Modal from "../../Modal";
-import { Image, Images, Title } from "./styled";
+import { Image, Images } from "./styled";
 
 const Information = () => {
   const [isOpen, setIsOpen] = useState(false),
@@ -29,34 +29,36 @@ const Information = () => {
     }
   }, [isOpen]);
   return (
-    <Content>
-      <Title>Information</Title>
-      <Images>
-        <Image
-          src={Information1}
-          alt="Engineering Results"
-          onClick={() => {
-            setOpenImg(Information1);
-            setIsOpen(true);
-          }}
-        />
-        <Image
-          src={Information2}
-          alt="Engineering and Diploma Results"
-          onClick={() => {
-            setOpenImg(Information2);
-            setIsOpen(true);
-          }}
-        />
-      </Images>
-      {isOpen && (
-        <Modal
-          isOpen={isOpen}
-          Component={ImageComponent}
-          onClose={() => setIsOpen(!isOpen)}
-        />
-      )}
-    </Content>
+    <Section>
+      <Content>
+        <Heading>Information</Heading>
+        <Images>
+          <Image
+            src={Information1}
+            alt="Engineering Results"
+            onClick={() => {
+              setOpenImg(Information1);
+              setIsOpen(true);
+            }}
+          />
+          <Image
+            src={Information2}
+            alt="Engineering and Diploma Results"
+            onClick={() => {
+              setOpenImg(Information2);
+              setIsOpen(true);
+            }}
+          />
+        </Images>
+        {isOpen && (
+          <Modal
+            isOpen={isOpen}
+            Component={ImageComponent}
+            onClose={() => setIsOpen(!isOpen)}
+          />
+        )}
+      </Content>
+    </Section>
   );
 };
 

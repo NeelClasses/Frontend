@@ -160,8 +160,8 @@ export const AccordionText = styled.div`
 export const VideoContainer = styled.div`
   /* width: 100%; */
   height: 100%;
-  max-width: 50vh;
-  width: 80vw;
+  /* max-width: 50vh;
+  width: 80vw; */
   margin: 0 auto;
   position: relative;
   input[type="range"] {
@@ -208,6 +208,11 @@ export const VideoContainer = styled.div`
       top: 50%;
       transform: scale(1.4) translate(-32%, -34%);
     } */
+  }
+  @media only screen and (max-width: 660px) {
+    div:first-child {
+      max-width: 90vw;
+    }
   }
 `;
 
@@ -269,4 +274,10 @@ export const CloseButton = styled.button`
   @media only screen and (max-width: 500px) {
     right: -2rem;
   }
+`;
+
+export const NoteLink = styled.a`
+  text-decoration: none;
+  color: var(--primary-color);
+  cursor: pointer;
 `;

@@ -9,7 +9,6 @@ import {
   RightContent,
   RightSection,
   SignupWrapper,
-  SubHeading,
   TextElement,
 } from "./styled";
 import Logo from "../../constants/Images/Logo";
@@ -54,7 +53,7 @@ const Signup = (props) => {
       .then(function (result) {
         const SignUpInfo = {
           name: inputs.fullName,
-          mobile: inputs.number,
+          mobile: "+91" + inputs.number,
         };
 
         axios
@@ -192,11 +191,11 @@ const Signup = (props) => {
       <RightSection>
         <RightContent>
           <Heading>Exploring Your Creativity</Heading>
-          <SubHeading>
+          {/* <SubHeading>
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
-          </SubHeading>
+          </SubHeading> */}
         </RightContent>
       </RightSection>
     </SignupWrapper>

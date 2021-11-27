@@ -118,3 +118,15 @@ export const Price = styled.p`
   color: var(--secondary-color);
   margin-bottom: 0.5rem;
 `;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  margin: 1rem auto;
+`;
+
+export const ProgressWrapper = styled.div`
+  max-width: 100vw;
+  margin: 1rem auto;
+  text-align: center;
+`;

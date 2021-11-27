@@ -9,7 +9,6 @@ import {
   RightContent,
   RightSection,
   SignupWrapper,
-  SubHeading,
   TextElement,
 } from "../Signup/styled";
 import Logo from "../../constants/Images/Logo";
@@ -102,7 +101,6 @@ const Login = (props) => {
         axios
           .post(`${process.env.REACT_APP_API_URL}/getUser`, LogInfo)
           .then((res) => {
-            console.log("at login", res.data[0]);
             dispatch(login({ ...res.data[0] }));
             if (res.data[0].role === "Admin") {
               props.history.push("/admin");
@@ -186,11 +184,11 @@ const Login = (props) => {
       <RightSection>
         <RightContent>
           <Heading>Exploring Your Creativity</Heading>
-          <SubHeading>
+          {/* <SubHeading>
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
             Lorem ipsum dolor sit amet asit Lorem ipsum dolor sit amet asit
-          </SubHeading>
+          </SubHeading> */}
         </RightContent>
       </RightSection>
     </SignupWrapper>
