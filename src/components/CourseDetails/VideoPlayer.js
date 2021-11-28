@@ -1,5 +1,4 @@
-import Plyr from "plyr-react";
-import React, { useState } from "react";
+import React from "react";
 import { VideoContainer } from "./styled";
 import Modal from "../Modal";
 import ReactPlayer from "react-player";
