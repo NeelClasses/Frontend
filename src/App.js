@@ -14,6 +14,8 @@ import AdminPanel from "./components/Admin";
 import { Provider } from "react-redux";
 import store from "./store";
 import AddEditForm from "./components/Admin/AddEditForm";
+import PaySuccess from "./components/Payments/PaySuccess";
+import PayFailed from "./components/Payments/PayFailed";
 
 function App() {
   return (
@@ -26,7 +28,7 @@ function App() {
             <RouteLayout path="/courses" exact component={Courses} />
             <RouteLayout path="/about" exact component={AboutUs} />
             <RouteLayout path="/contact" exact component={ContactUs} />
-            <RouteLayout path="/course" component={CourseDetails} />
+            <RouteLayout path="/course/:courseId" component={CourseDetails} />
             <RouteLayout
               path="/signup"
               exact
@@ -46,6 +48,11 @@ function App() {
             />
             <RouteLayout path="/admin/edit/:courseId" component={AddEditForm} />
             <RouteLayout path="/admin/add" component={AddEditForm} />
+            <RouteLayout
+              path="/paysuccess/:courseCost/:orderId/:txnId"
+              component={PaySuccess}
+            />
+            <RouteLayout path="/payfailed" component={PayFailed} />
           </Switch>
         </Router>
       </ThemeProvider>

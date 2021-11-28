@@ -58,3 +58,7 @@ export const Content = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
 `;
+
+export const Section = styled.section`
+  padding: 3rem 0;
+`;

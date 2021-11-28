@@ -1,6 +1,6 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Content } from "../../globalStyles";
 import {
   ContentTextSection,
@@ -12,6 +12,8 @@ import {
   CourseGrid,
   CoursesHeading,
   CoursesWrapper,
+  PaginationWrapper,
+  ProgressWrapper,
   SearchBar,
   SearchBarWrapper,
   SubmitButton,
@@ -19,13 +21,44 @@ import {
 } from "./styled";
 import courseImg from "../../constants/Images/courseImage.jpg";
 import CourseComponent from "./Course";
+import useFetchCourses from "../Hooks/useFetchCourses";
+import { CircularProgress, Pagination } from "@mui/material";
 const Courses = () => {
   const [searchInput, setSearchInput] = useState(""),
-    handleSubmit = () => {
-      if (searchInput) {
-        alert("Searching");
+    [courses, setCourses] = useState([]),
+    [data, error] = useFetchCourses(""),
+    [activePage, setActivePage] = useState(1),
+    [courseDisplay, setCourseDisplay] = useState([]),
+    handleSearch = (e) => {
+      e.preventDefault();
+      if (searchInput !== "") {
+        const results = courses.filter((course) =>
+          course.courseName.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        if (results.length !== 0) {
+          setCourseDisplay(results);
+        }
       }
+    },
+    handlePageChange = (event, value) => {
+      setActivePage(value);
+      let indexOfLastCourse = value * 12;
+      let indexOfFirstCourse = indexOfLastCourse - 12;
+      setCourseDisplay(courses.slice(indexOfFirstCourse, indexOfLastCourse));
     };
+  useEffect(() => {
+    if (data.length !== 0) {
+      setCourses(data);
+    }
+    if (error) {
+      console.log(error);
+    }
+  }, [data, error]);
+  useEffect(() => {
+    if (courses.length !== 0) {
+      setCourseDisplay(courses.slice(0, 12));
+    }
+  }, [courses]);
   return (
     <CoursesWrapper>
       <TitleSection>
@@ -41,7 +74,7 @@ const Courses = () => {
       <Content>
         <TopSection>
           <CoursesHeading>Courses</CoursesHeading>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSearch}>
             <SearchBarWrapper>
               <SearchBar
                 type="text"
@@ -57,47 +90,32 @@ const Courses = () => {
           </form>
         </TopSection>
         <CourseGrid>
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
-          <CourseComponent
-            courseImage={courseImg}
-            courseTitle="General Theory of Relativity"
-            coursePrice="300"
-          />
+          {courseDisplay.length !== 0 &&
+            courseDisplay.map((course) => (
+              <CourseComponent
+                key={course.courseId}
+                courseImage={courseImg}
+                courseTitle={course.courseName}
+                coursePrice={course.coursePrice}
+                courseId={course.courseId}
+              />
+            ))}
+          {/* {error && <p>Something went wrong.</p>} */}
         </CourseGrid>
+        {courses.length === 0 && (
+          <ProgressWrapper>
+            <CircularProgress />
+          </ProgressWrapper>
+        )}
+        {courseDisplay.length !== 0 && (
+          <PaginationWrapper>
+            <Pagination
+              count={Math.ceil(courses.length / 12)}
+              page={activePage}
+              onChange={handlePageChange}
+            />
+          </PaginationWrapper>
+        )}
       </Content>
     </CoursesWrapper>
   );
