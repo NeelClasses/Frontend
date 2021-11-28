@@ -43,8 +43,10 @@ const Footer = () => {
           <QuickLinksSection>
             <QuickLinksHeading>Quick Links</QuickLinksHeading>
             <QuickLinks>
-              {constants.footerDetails.navLinks.map((link) => (
-                <StyledLink to={link.to}>{link.label}</StyledLink>
+              {constants.footerDetails.navLinks.map((link, index) => (
+                <StyledLink key={index} to={link.to}>
+                  {link.label}
+                </StyledLink>
               ))}
             </QuickLinks>
           </QuickLinksSection>
@@ -60,15 +62,15 @@ const Footer = () => {
             <Phone>
               <FontAwesomeIcon icon={faPhone} rotation={90} />
               <Links>
-                {constants.contactUsDetails.phones.map((phone) => (
-                  <a href={`tel:${phone}`}>{phone}</a>
+                {constants.contactUsDetails.phones.map((phone,index) => (
+                  <a key={index} href={`tel:${phone}`}>{phone}</a>
                 ))}
               </Links>
             </Phone>
             <Email>
               <FontAwesomeIcon icon={faEnvelope} />
-              {constants.contactUsDetails.emails.map((mail) => (
-                <a key={mail} href={`mailto:${mail}`}>
+              {constants.contactUsDetails.emails.map((mail,index) => (
+                <a key={index} href={`mailto:${mail}`}>
                   {mail}
                 </a>
               ))}
@@ -77,8 +79,8 @@ const Footer = () => {
         </TopSection>
         <BottomSection>
           <SocialLinks>
-            {constants.footerDetails.socialLinks.map((link) => (
-              <SocialLink key={link.to} href={link.to} target="_blank">
+            {constants.footerDetails.socialLinks.map((link,index) => (
+              <SocialLink key={index} href={link.to} target="_blank">
                 <FontAwesomeIcon icon={link.icon} iconColor="#fff" />
               </SocialLink>
             ))}

@@ -17,7 +17,6 @@ const useFetchCourses = () => {
       }
     };
     fetchData();
-    console.count("This");
   }, []);
   return [data, error];
 };

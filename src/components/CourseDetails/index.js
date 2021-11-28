@@ -37,11 +37,12 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import uuid from "react-uuid";
 import { setCourse } from "../../store/actions";
+import { ProgressWrapper } from "../Courses/styled";
+import { CircularProgress } from "@mui/material";
 
 const CourseDetails = () => {
   const { courseId } = useParams(),
-    [data, error] = useFetchCourseDetails(courseId),
-    [courseDetails, setCourseDetails] = useState({}),
+    [{ CourseInfo }] = useFetchCourseDetails(courseId),
     [courseAccess, setCourseAccess] = useState(false),
     [activeNotes, setActiveNotes] = useState(null),
     [activeVideo, setActiveVideo] = useState(null),
@@ -74,14 +75,6 @@ const CourseDetails = () => {
     };
 
   useEffect(() => {
-    if (data) {
-      setCourseDetails(data.CourseInfo);
-    }
-    if (Object.keys(error).length !== 0 && error.constructor === Object) {
-      console.log(error);
-    }
-  }, [data, error]);
-  useEffect(() => {
     if (activeModal) {
       document.body.classList.add("stopScroll");
     } else {
@@ -89,9 +82,9 @@ const CourseDetails = () => {
     }
   }, [activeModal]);
   useEffect(() => {
-    if (courseDetails?.courseRating !== undefined) {
+    if (CourseInfo?.courseRating !== undefined) {
       const starsArray = [];
-      const ratingNumber = Number(courseDetails?.courseRating);
+      const ratingNumber = Number(CourseInfo?.courseRating);
       [...Array(parseInt(ratingNumber))].forEach(() => {
         starsArray.push(1);
       });
@@ -100,7 +93,7 @@ const CourseDetails = () => {
       }
       setStars(starsArray);
     }
-  }, [courseDetails]);
+  }, [CourseInfo]);
 
   function isDate(val) {
     // Cross realm comptatible
@@ -143,24 +136,24 @@ const CourseDetails = () => {
   }
 
   const handlePurchase = async () => {
-    if (courseAccess && courseDetails) {
+    if (courseAccess && CourseInfo) {
       return;
     } else {
       if (!userInfo) {
         alert("Please log in first");
         return;
       } else {
-        dispatch(setCourse(courseDetails));
+        dispatch(setCourse(CourseInfo));
         const email = "vw78690@gmail.com";
         const order_id = "ORDERID" + uuid();
         const params = {
           orderId: order_id,
           email: email,
-          amount: courseDetails.amount,
+          amount: CourseInfo?.coursePrice,
           phonenumber: userInfo.mobile,
-          uid: userInfo.uid,
+          uid: userInfo.id,
         };
-        var url = "https://neelclasses.herokuapp.com/payment";
+        var url = `${process.env.REACT_APP_API_URL}/payment`;
         var request = {
           url: url,
           params: params,
@@ -169,7 +162,6 @@ const CourseDetails = () => {
 
         const response = await axios(request);
         const processParams = await response.data;
-        console.log(processParams);
         var details = {
           action: "https://securegw.paytm.in/order/process",
           params: processParams,
@@ -180,20 +172,18 @@ const CourseDetails = () => {
   };
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo);
       if (userInfo.role === "Admin") {
         setCourseAccess(true);
         return;
       }
       async function checkAccess() {
         const Info = {
-          uid: userInfo.uid,
+          uid: userInfo.id,
           courseId: courseId,
         };
         await axios
           .post(`${process.env.REACT_APP_API_URL}/checkAccess`, Info)
           .then((res) => {
-            console.log(res.data);
             if (res.data === "Yes") {
               setCourseAccess(true);
               return false;
@@ -223,73 +213,80 @@ const CourseDetails = () => {
           </Content>
         </TitleSection>
         <Content>
-          <ContentSection>
-            <LeftSection>
-              <CourseTitle>{courseDetails?.courseName ?? "-"}</CourseTitle>
-              <Image src={courseImg} alt="Course Image" />
-            </LeftSection>
-            <RightSection>
-              <Price>&#8377;{courseDetails?.coursePrice}</Price>
-              <EnrollBtn disabled={courseAccess} onClick={handlePurchase}>
-                {courseAccess ? "Enrolled" : "Enroll Now"}
-              </EnrollBtn>
-              <Details>
-                <Detail>
-                  <RowCell>
-                    <FontAwesomeIcon
-                      icon={faCodeBranch}
-                      rotation={180}
-                      flip="vertical"
-                      color={constants.colors.secondaryColor}
-                    />
-                  </RowCell>
-                  <RowCell>Branch</RowCell>
-                  <RowCell>:</RowCell>
-                  <RowCell>{courseDetails?.courseBranch ?? "-"}</RowCell>
-                </Detail>
-                <Detail>
-                  <RowCell>
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      color={constants.colors.secondaryColor}
-                    />
-                  </RowCell>
-                  <RowCell>Instructor</RowCell>
-                  <RowCell>:</RowCell>
-                  <RowCell>{courseDetails?.courseInstructor ?? "-"}</RowCell>
-                </Detail>
-                <Detail>
-                  <RowCell>
-                    <FontAwesomeIcon
-                      icon={faAward}
-                      color={constants.colors.secondaryColor}
-                    />
-                  </RowCell>
-                  <RowCell>Rating</RowCell>
-                  <RowCell>:</RowCell>
-                  <RowCell>
-                    <Ratings stars={stars} />
-                  </RowCell>
-                </Detail>
-              </Details>
-            </RightSection>
-          </ContentSection>
-          {courseAccess && courseDetails ? (
+          {CourseInfo ? (
             <>
-              <VideoAccordions
-                toggleActiveVideo={toggleActiveVideo}
-                activeVideo={activeVideo}
-                toggleModal={toggleModal}
-                courseVideos={courseDetails?.courseVideos}
-              />
-              <NoteAccordions
-                toggleActiveNotes={toggleActiveNotes}
-                activeNotes={activeNotes}
-                courseNotes={courseDetails?.courseNotes}
-              />
+              {" "}
+              <ContentSection>
+                <LeftSection>
+                  <CourseTitle>{CourseInfo?.courseName ?? "-"}</CourseTitle>
+                  <Image src={courseImg} alt="Course Image" />
+                </LeftSection>
+                <RightSection>
+                  <Price>&#8377;{CourseInfo?.coursePrice}</Price>
+                  <EnrollBtn disabled={courseAccess} onClick={handlePurchase}>
+                    {courseAccess ? "Enrolled" : "Enroll Now"}
+                  </EnrollBtn>
+                  <Details>
+                    <Detail>
+                      <RowCell>
+                        <FontAwesomeIcon
+                          icon={faCodeBranch}
+                          rotation={180}
+                          flip="vertical"
+                          color={constants.colors.secondaryColor}
+                        />
+                      </RowCell>
+                      <RowCell>Branch</RowCell>
+                      <RowCell>:</RowCell>
+                      <RowCell>{CourseInfo?.courseBranch ?? "-"}</RowCell>
+                    </Detail>
+                    <Detail>
+                      <RowCell>
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          color={constants.colors.secondaryColor}
+                        />
+                      </RowCell>
+                      <RowCell>Instructor</RowCell>
+                      <RowCell>:</RowCell>
+                      <RowCell>{CourseInfo?.courseInstructor ?? "-"}</RowCell>
+                    </Detail>
+                    <Detail>
+                      <RowCell>
+                        <FontAwesomeIcon
+                          icon={faAward}
+                          color={constants.colors.secondaryColor}
+                        />
+                      </RowCell>
+                      <RowCell>Rating</RowCell>
+                      <RowCell>:</RowCell>
+                      <RowCell>
+                        <Ratings stars={stars} />
+                      </RowCell>
+                    </Detail>
+                  </Details>
+                </RightSection>
+              </ContentSection>
+              {courseAccess && CourseInfo && (
+                <>
+                  <VideoAccordions
+                    toggleActiveVideo={toggleActiveVideo}
+                    activeVideo={activeVideo}
+                    toggleModal={toggleModal}
+                    courseVideos={CourseInfo?.courseVideos}
+                  />
+                  <NoteAccordions
+                    toggleActiveNotes={toggleActiveNotes}
+                    activeNotes={activeNotes}
+                    courseNotes={CourseInfo?.courseNotes}
+                  />
+                </>
+              )}
             </>
           ) : (
-            ""
+            <ProgressWrapper>
+              <CircularProgress />
+            </ProgressWrapper>
           )}
         </Content>
       </CourseWrapper>

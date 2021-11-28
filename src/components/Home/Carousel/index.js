@@ -7,6 +7,8 @@ import courseImg from "../../../constants/Images/courseImage.jpg";
 import useFetchCourses from "../../Hooks/useFetchCourses";
 import { Section } from "../../../globalStyles";
 import { Heading } from "../Achievements/styled";
+import { ProgressWrapper } from "../../Courses/styled";
+import { CircularProgress } from "@mui/material";
 
 export const Carousel = () => {
   const popularCourses = [
@@ -29,41 +31,45 @@ export const Carousel = () => {
     <Section>
       <SliderWrapper>
         <Heading id="recognitions">Popular Courses</Heading>
-        <OwlCarousel
-          nav={true}
-          items={2}
-          navText={[
-            '<span class="prev">&lt;</span>',
-            '<span class="next">&gt;</span>',
-          ]}
-          loop={true}
-          responsive={{
-            0: {
-              items: 1,
-            },
-            1000: {
-              items: 2,
-            },
-          }}
-        >
-          {data && data.length !== 0
-            ? data.map((course, index) => {
-                if (popularCourses.includes(course.courseId)) {
-                  return (
-                    <CarouselItem>
-                      <CourseComponent
-                        key={index}
-                        courseImage={courseImg}
-                        courseTitle={course?.courseName}
-                        coursePrice={course?.coursePrice}
-                      />
-                    </CarouselItem>
-                  );
-                }
-                return "";
-              })
-            : ""}
-        </OwlCarousel>
+        {data.length > 0 ? (
+          <OwlCarousel
+            nav={true}
+            items={2}
+            navText={[
+              '<span class="prev">&lt;</span>',
+              '<span class="next">&gt;</span>',
+            ]}
+            loop={true}
+            responsive={{
+              0: {
+                items: 1,
+              },
+              1000: {
+                items: 2,
+              },
+            }}
+          >
+            {data.map((course, index) => {
+              if (popularCourses.includes(course.courseId)) {
+                return (
+                  <CarouselItem key={index}>
+                    <CourseComponent
+                      courseId={course.courseId}
+                      courseImage={courseImg}
+                      courseTitle={course?.courseName}
+                      coursePrice={course?.coursePrice}
+                    />
+                  </CarouselItem>
+                );
+              }
+              return "";
+            })}
+          </OwlCarousel>
+        ) : (
+          <ProgressWrapper>
+            <CircularProgress />
+          </ProgressWrapper>
+        )}
       </SliderWrapper>
     </Section>
   );
