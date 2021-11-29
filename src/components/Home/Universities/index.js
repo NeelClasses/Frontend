@@ -6,6 +6,8 @@ import RTU from "../../../constants/Images/RTU.jpg";
 import SPPU from "../../../constants/Images/SPPU.png";
 import SANDEEPU from "../../../constants/Images/SANDEEPU.png";
 import MSBTE from "../../../constants/Images/MSBTE.png";
+import BATU from "../../../constants/Images/DBATU.png";
+import KBCNMU from "../../../constants/Images/KBCNMU.jpg";
 import { Img, Name, Tile, TileSection } from "./styled";
 import { Heading } from "../Achievements/styled";
 const Universities = () => {
@@ -43,6 +45,14 @@ const Universities = () => {
           <Tile>
             <Img src={MSBTE} alt="MSBTE Logo" />
             <Name>MSBTE</Name>
+          </Tile>
+          <Tile>
+            <Img src={BATU} alt="MSBTE Logo" />
+            <Name>BATU</Name>
+          </Tile>
+          <Tile>
+            <Img src={KBCNMU} alt="MSBTE Logo" />
+            <Name>KBCNMU</Name>
           </Tile>
         </TileSection>
       </Content>
