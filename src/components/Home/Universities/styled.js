@@ -23,4 +23,5 @@ export const Img = styled.img`
 export const Name = styled.p`
   font-size: 1rem;
   text-align: center;
+  margin-top: 1rem;
 `;
