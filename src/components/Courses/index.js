@@ -23,10 +23,14 @@ import courseImg from "../../constants/Images/courseImage.jpg";
 import CourseComponent from "./Course";
 import useFetchCourses from "../Hooks/useFetchCourses";
 import { CircularProgress, Pagination } from "@mui/material";
+import { useLocation } from "react-router";
+import { useSelector } from "react-redux";
 const Courses = () => {
   const [searchInput, setSearchInput] = useState(""),
+    { userInfo } = useSelector((state) => state.userInfo),
+    { pathname } = useLocation(),
     [courses, setCourses] = useState([]),
-    [data, error] = useFetchCourses(""),
+    [data, error] = useFetchCourses(pathname, userInfo?.id),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handleSearch = (e) => {

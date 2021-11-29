@@ -114,6 +114,16 @@ const Header = () => {
             </Button>
           )}
           {userInfo?.id && (
+            <StyledLink
+              key="/my-courses"
+              isSidebar={false}
+              onClick={() => onLinksClicked("/my-courses")}
+              isActive={pathname.includes("/my-courses")}
+            >
+              My Courses
+            </StyledLink>
+          )}
+          {userInfo?.id && (
             <Button isPrimary={false} isSidebar={false} onClick={handleLogout}>
               Log Out
             </Button>
@@ -170,6 +180,16 @@ const Header = () => {
           >
             Contact
           </StyledLink>
+          {userInfo?.id && (
+            <StyledLink
+              key="/my-courses"
+              isSidebar={false}
+              onClick={() => onLinksClicked("/my-courses")}
+              isActive={pathname.includes("/my-courses")}
+            >
+              My Courses
+            </StyledLink>
+          )}
           <Buttons isSidebar={true}>
             {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button

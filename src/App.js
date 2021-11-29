@@ -26,6 +26,7 @@ function App() {
           <Switch>
             <RouteLayout path="/" exact component={Home} />
             <RouteLayout path="/courses" exact component={Courses} />
+            <RouteLayout path="/my-courses" exact component={Courses} />
             <RouteLayout path="/about" exact component={AboutUs} />
             <RouteLayout path="/contact" exact component={ContactUs} />
             <RouteLayout path="/course/:courseId" component={CourseDetails} />
