@@ -42,44 +42,136 @@ export const constants = {
       {
         heading: "Engg",
         content: [
-          { label: "Math", link: "/engg/math" },
-          { label: "Mech", link: "/engg/mech" },
-          { label: "Civil", link: "/engg/civil" },
-          { label: "Videos", link: "/engg/videos" },
-          { label: "MCQ", link: "/engg/mcq" },
+          {
+            label: "Math",
+            link: "/courses/engg/math",
+            apiUrl: "coursesByNav/Engineering/Math", // remaining
+          },
+          {
+            label: "Mech",
+            link: "/courses/engg/mech",
+            apiUrl: "coursesByBranch/Engineering/Mechanical-Engineering",
+          },
+          {
+            label: "Civil",
+            link: "/courses/engg/civil",
+            apiUrl: "coursesByBranch/Engineering/Civil-Engineering",
+          },
+          {
+            label: "Videos",
+            link: "/courses/engg/videos",
+            apiUrl: "coursesByNav/Engineering/Videos",
+          },
+          {
+            label: "MCQ",
+            link: "/courses/engg/mcq",
+            apiUrl: "coursesByNav/Engineering/Notes",
+          },
         ],
       },
       {
         heading: "Diploma",
         content: [
-          { label: "Math", link: "/diploma/math" },
-          { label: "Mech", link: "/diploma/mech" },
-          { label: "Civil", link: "/diploma/civil" },
-          { label: "Videos", link: "/diploma/videos" },
-          { label: "MCQ", link: "/diploma/mcq" },
+          {
+            label: "Math",
+            link: "/courses/diploma/math",
+            apiUrl: "coursesByNav/Diploma/Math", // remaining
+          },
+          {
+            label: "Mech",
+            link: "/courses/diploma/mech",
+            apiUrl: "coursesByBranch/Diploma/Mechanical-Engineering",
+          },
+          {
+            label: "Civil",
+            link: "/courses/diploma/civil",
+            apiUrl: "coursesByBranch/Diploma/Civil-Engineering",
+          },
+          {
+            label: "Videos",
+            link: "/courses/diploma/videos",
+            apiUrl: "coursesByNav/Diploma/Videos",
+          },
+          {
+            label: "MCQ",
+            link: "/courses/diploma/mcq",
+            apiUrl: "coursesByNav/Diploma/Notes",
+          },
         ],
       },
       {
-        heading: "GATE",
+        heading: "GATE", // all remaining
         content: [
-          { label: "Math", link: "/gate/math" },
-          { label: "Aptitude", link: "/gate/apt" },
-          { label: "Videos", link: "/gate/videos" },
+          {
+            label: "Math",
+            link: "/courses/gate/math",
+            apiUrl: "coursesByNav/12th/Videos",
+          },
+          {
+            label: "Aptitude",
+            link: "/courses/gate/apt",
+            apiUrl: "coursesByNav/12th/Videos",
+          },
+          {
+            label: "Videos",
+            link: "/courses/gate/videos",
+            apiUrl: "coursesByNav/12th/Videos",
+          },
         ],
       },
       {
-        heading: "11th 12th",
+        heading: "11th",
         content: [
-          { label: "Regular", link: "/hsc/regular" },
-          { label: "MHTCET and JEE", link: "/hsc/cetjee" },
-          { label: "Videos", link: "/hsc/videos" },
+          {
+            label: "Regular",
+            link: "/courses/eleventh/regular",
+            apiUrl: "coursesByNav/11th/Regular", // remaining
+          },
+          {
+            label: "MHTCET and JEE",
+            link: "/courses/eleventh/cetjee",
+            apiUrl: "coursesByNav/11th/cetjee", // remaining
+          },
+          {
+            label: "Videos",
+            link: "/courses/eleventh/videos",
+            apiUrl: "coursesByNav/11th/Videos",
+          },
+        ],
+      },
+      {
+        heading: "12th",
+        content: [
+          {
+            label: "Regular",
+            link: "/courses/hsc/regular",
+            apiUrl: "coursesByNav/HSC/Regular", // remaining
+          },
+          {
+            label: "MHTCET and JEE",
+            link: "/courses/hsc/cetjee",
+            apiUrl: "coursesByNav/HSC/cetjee", // remaining
+          },
+          {
+            label: "Videos",
+            link: "/courses/hsc/videos",
+            apiUrl: "coursesByNav/HSC/Videos",
+          },
         ],
       },
       {
         heading: "BSc",
         content: [
-          { label: "Math", link: "/bsc/math" },
-          { label: "Videos", link: "/bsc/videos" },
+          {
+            label: "Math",
+            link: "/courses/bsc/math",
+            apiUrl: "coursesByNav/BSC/Math", // remaining
+          },
+          {
+            label: "Videos",
+            link: "/courses/bsc/videos",
+            apiUrl: "coursesByNav/BSC/Videos",
+          },
         ],
       },
     ],

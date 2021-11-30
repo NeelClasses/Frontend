@@ -71,7 +71,18 @@ const Header = () => {
               <DropDown>
                 {dropDown.content.map((item, index) => (
                   <DropDownItem key={index}>
-                    <StyledLink>{item.label}</StyledLink>
+                    <StyledLink
+                      onClick={() =>
+                        history.push({
+                          state: {
+                            apiUrl: item.apiUrl,
+                          },
+                          pathname: item.link,
+                        })
+                      }
+                    >
+                      {item.label}
+                    </StyledLink>
                   </DropDownItem>
                 ))}
               </DropDown>

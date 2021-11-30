@@ -16,6 +16,7 @@ import store from "./store";
 import AddEditForm from "./components/Admin/AddEditForm";
 import PaySuccess from "./components/Payments/PaySuccess";
 import PayFailed from "./components/Payments/PayFailed";
+import CourseResults from "./components/Courses/CourseResults";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
             <RouteLayout path="/about" exact component={AboutUs} />
             <RouteLayout path="/contact" exact component={ContactUs} />
             <RouteLayout path="/course/:courseId" component={CourseDetails} />
+            <RouteLayout
+              exact
+              path="/courses/:type/:subtype"
+              component={CourseResults}
+            />
             <RouteLayout
               path="/signup"
               exact
