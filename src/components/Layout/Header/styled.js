@@ -105,7 +105,7 @@ export const DropDown = styled.div`
   background: var(--background-color);
   z-index: 999999;
   display: none;
-  /* width: 100%; */
+  width: 100%;
 `;
 
 export const DropDownHeading = styled.p`
