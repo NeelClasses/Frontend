@@ -24,7 +24,7 @@ const CourseResults = () => {
   const [courses, setCourses] = useState([]),
     location = useLocation(),
     [apiUrl, setApiUrl] = useState(""),
-    [data, error] = useFetchCoursesByType(apiUrl),
+    [data, error, loading] = useFetchCoursesByType(apiUrl),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handlePageChange = (event, value) => {
@@ -33,7 +33,6 @@ const CourseResults = () => {
       let indexOfFirstCourse = indexOfLastCourse - 12;
       setCourseDisplay(courses.slice(indexOfFirstCourse, indexOfLastCourse));
     };
-  console.log(location.state.apiUrl);
   useEffect(() => {
     if (data?.length !== 0) {
       setCourses(data);
@@ -63,7 +62,11 @@ const CourseResults = () => {
         </Content>
       </TitleSection>
       <Content>
-        {courses ? (
+        {loading ? (
+          <ProgressWrapper>
+            <CircularProgress />
+          </ProgressWrapper>
+        ) : courses?.length > 0 ? (
           <>
             <TopSection>
               <CoursesHeading>Courses</CoursesHeading>
@@ -93,7 +96,7 @@ const CourseResults = () => {
           </>
         ) : (
           <ProgressWrapper>
-            <CircularProgress />
+            <h1>No Courses Found</h1>
           </ProgressWrapper>
         )}
       </Content>

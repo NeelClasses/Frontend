@@ -33,7 +33,7 @@ const useFetchCourses = (route, uid = "") => {
       }
     };
     fetchData();
-  }, [route]);
+  }, [route, uid]);
   return [data, error];
 };
 
