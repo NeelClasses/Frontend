@@ -9,6 +9,7 @@ import { Section } from "../../../globalStyles";
 import { Heading } from "../Achievements/styled";
 import { ProgressWrapper } from "../../Courses/styled";
 import { CircularProgress } from "@mui/material";
+import { useEffect } from "react";
 
 export const Carousel = () => {
   const popularCourses = [
@@ -26,12 +27,21 @@ export const Carousel = () => {
       "RjaRxFnMEmFip2MgBNEI",
       "TpJcPlPUnyIc0zJuipqX",
     ],
-    [data] = useFetchCourses("");
+    [data, error, loading] = useFetchCourses("/courses");
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+  });
   return (
     <Section>
       <SliderWrapper>
         <Heading id="recognitions">Popular Courses</Heading>
-        {data.length > 0 ? (
+        {loading ? (
+          <ProgressWrapper>
+            <CircularProgress />
+          </ProgressWrapper>
+        ) : data?.length > 0 ? (
           <OwlCarousel
             nav={true}
             items={2}
@@ -67,7 +77,7 @@ export const Carousel = () => {
           </OwlCarousel>
         ) : (
           <ProgressWrapper>
-            <CircularProgress />
+            <p>Something went wrong.</p>
           </ProgressWrapper>
         )}
       </SliderWrapper>

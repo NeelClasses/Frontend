@@ -30,7 +30,7 @@ const Courses = () => {
     { userInfo } = useSelector((state) => state.userInfo),
     { pathname } = useLocation(),
     [courses, setCourses] = useState([]),
-    [data, error] = useFetchCourses(pathname, userInfo?.id),
+    [data, error, loading] = useFetchCourses(pathname, userInfo?.id),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handleSearch = (e) => {
@@ -94,7 +94,11 @@ const Courses = () => {
           </form>
         </TopSection>
         <CourseGrid>
-          {courseDisplay.length !== 0 &&
+          {loading ? (
+            <ProgressWrapper>
+              <CircularProgress />
+            </ProgressWrapper>
+          ) : courseDisplay.length !== 0 ? (
             courseDisplay.map((course) => (
               <CourseComponent
                 key={course.courseId}
@@ -103,14 +107,13 @@ const Courses = () => {
                 coursePrice={course.coursePrice}
                 courseId={course.courseId}
               />
-            ))}
-          {/* {error && <p>Something went wrong.</p>} */}
+            ))
+          ) : (
+            <ProgressWrapper>
+              <h1>Something went wrong.</h1>
+            </ProgressWrapper>
+          )}
         </CourseGrid>
-        {courses.length === 0 && (
-          <ProgressWrapper>
-            <CircularProgress />
-          </ProgressWrapper>
-        )}
         {courseDisplay.length !== 0 && (
           <PaginationWrapper>
             <Pagination

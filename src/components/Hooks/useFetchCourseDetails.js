@@ -4,22 +4,25 @@ import { useEffect, useState } from "react";
 const useFetchCourseDetails = (courseId) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
-        const getCourses = await axios({
+        const response = await axios({
           method: "GET",
           url: `${process.env.REACT_APP_API_URL}/course/${courseId}`,
         });
-        setData(getCourses.data);
+        response.data && setLoading(false);
+        response.data && setData(response.data);
       } catch (error) {
+        setLoading(false);
         setError(error);
       }
     };
     fetchData();
-    console.count("This");
   }, [courseId]);
-  return [data, error];
+  return [data, error, loading];
 };
 
 export default useFetchCourseDetails;
