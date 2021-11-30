@@ -42,7 +42,7 @@ import { CircularProgress } from "@mui/material";
 
 const CourseDetails = () => {
   const { courseId } = useParams(),
-    [{ CourseInfo }] = useFetchCourseDetails(courseId),
+    [{ CourseInfo }, error, loading] = useFetchCourseDetails(courseId),
     [courseAccess, setCourseAccess] = useState(false),
     [activeNotes, setActiveNotes] = useState(null),
     [activeVideo, setActiveVideo] = useState(null),
@@ -73,7 +73,11 @@ const CourseDetails = () => {
       }
       setActiveModal(!activeModal);
     };
-
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+  });
   useEffect(() => {
     if (activeModal) {
       document.body.classList.add("stopScroll");
@@ -213,7 +217,11 @@ const CourseDetails = () => {
           </Content>
         </TitleSection>
         <Content>
-          {CourseInfo ? (
+          {loading ? (
+            <ProgressWrapper>
+              <CircularProgress />
+            </ProgressWrapper>
+          ) : CourseInfo ? (
             <>
               {" "}
               <ContentSection>
@@ -285,7 +293,7 @@ const CourseDetails = () => {
             </>
           ) : (
             <ProgressWrapper>
-              <CircularProgress />
+              <h1>Something Went Wrong.</h1>
             </ProgressWrapper>
           )}
         </Content>
