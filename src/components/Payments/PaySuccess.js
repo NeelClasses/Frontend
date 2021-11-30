@@ -33,9 +33,8 @@ const PaySuccess = (props) => {
         txnId: txnId,
       };
       await axios
-        .post("https://neelclasses.herokuapp.com/enrollCourse", Info)
+        .post(`${process.env.REACT_APP_API_URL}/enrollCourse`, Info)
         .then((res) => {
-          console.log(res);
           if (res.data === "Done") {
             alert("Course Enrolled Successfully");
             removeCourseFn();
