@@ -40,7 +40,7 @@ const FormUpload = (props) => {
   const getCourseList = async () => {
     try {
       await axios
-        .get("https://neelclasses.herokuapp.com/admin/upload")
+        .get(`${process.env.REACT_APP_API_URL}/admin/upload`)
         .then((res) => {
           setCourseList(res.data.CourseList);
         });
@@ -95,7 +95,7 @@ const FormUpload = (props) => {
                 try {
                   await axios
                     .post(
-                      "https://neelclasses.herokuapp.com/admin/upload/video",
+                      `${process.env.REACT_APP_API_URL}/admin/upload/video`,
                       VideoInfo
                     )
                     .then((res) => {
@@ -125,7 +125,7 @@ const FormUpload = (props) => {
                 try {
                   await axios
                     .post(
-                      "https://neelclasses.herokuapp.com/admin/upload/notes",
+                      `${process.env.REACT_APP_API_URL}/admin/upload/notes`,
                       DocInfo
                     )
                     .then((res) => {

@@ -17,7 +17,7 @@ const TableComponent = (props) => {
     course.courseStatus = "DELETE";
     try {
       await axios
-        .put(`https://neelclasses.herokuapp.com/admin/editcourse`, course)
+        .put(`${process.env.REACT_APP_API_URL}/admin/editcourse`, course)
         .then((res) => {
           setStatus(res.data);
           console.log(res.data);
@@ -40,6 +40,7 @@ const TableComponent = (props) => {
             <th scope="col">Branch</th>
             <th scope="col">Year</th>
             <th scope="col">Instructor</th>
+            <th scope="col">Type</th>
             <th scope="col">Rating</th>
             <th scope="col">Course Content</th>
             <th scope="col">Price</th>
@@ -58,13 +59,14 @@ const TableComponent = (props) => {
                 <td>{course.courseBranch}</td>
                 <td>{course.courseYear}</td>
                 <td>{course.courseInstructor}</td>
+                <td>{course.courseType}</td>
                 <td>{course.courseRating}</td>
                 <td>
                   <button className="link-view-contents">
                     <span>
                       <FontAwesomeIcon icon={faHandPointRight} />
                     </span>
-                    <Link to={`/course/${course.courseName}`}>View</Link>
+                    <Link to={`/course/${course.courseId}`}>View</Link>
                   </button>
                 </td>
                 <td>{course.coursePrice}</td>

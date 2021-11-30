@@ -77,7 +77,7 @@ const AdminPanel = (props) => {
   const getDataForCourses = async () => {
     try {
       await axios
-        .get(`https://neelclasses.herokuapp.com/admin/courses`, {
+        .get(`${process.env.REACT_APP_API_URL}/admin/courses`, {
           onDownloadProgress: (progressEvent) => {
             var percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total

@@ -26,6 +26,7 @@ const FormAddEdit = (props) => {
   const [courseDescription, setCourseDescription] = useState("");
   const [courseInstructor, setCourseInstructor] = useState("");
   const [addForm, setAddForm] = useState(true);
+  const [courseType, setCourseType] = useState("");
 
   useEffect(() => {
     if (props.course !== undefined) {
@@ -39,9 +40,9 @@ const FormAddEdit = (props) => {
       setCourseField(props.course.courseField);
       setCourseDescription(props.course.courseDescription);
       setCourseInstructor(props.course.courseInstructor);
+      setCourseType(props.course.courseType);
       setAddForm(false);
     } else {
-      console.log(props.course);
       setCourseName("");
       setCourseStream("");
       setCourseBranch("");
@@ -53,6 +54,7 @@ const FormAddEdit = (props) => {
       setCourseDescription("");
       setCourseInstructor("");
       setAddForm(true);
+      setCourseType("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -63,7 +65,7 @@ const FormAddEdit = (props) => {
       setTimeout(() => {
         try {
           axios
-            .get("https://neelclasses.herokuapp.com/admin/course")
+            .get(`${process.env.REACT_APP_API_URL}/admin/course`)
             .then((res) => {
               console.log(res.data.CourseStreamList);
               const courseStreamList = [];
@@ -96,7 +98,7 @@ const FormAddEdit = (props) => {
         try {
           axios
             .get(
-              `https://neelclasses.herokuapp.com/admin/course/${courseStream}`
+              `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}`
             )
             .then((res) => {
               console.log(res.data.CourseFieldList);
@@ -130,7 +132,7 @@ const FormAddEdit = (props) => {
         try {
           axios
             .get(
-              `https://neelclasses.herokuapp.com/admin/course/${courseStream}/${courseField}`
+              `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}/${courseField}`
             )
             .then((res) => {
               console.log(res.data.CourseBranchList);
@@ -164,7 +166,7 @@ const FormAddEdit = (props) => {
         try {
           axios
             .get(
-              `https://neelclasses.herokuapp.com/admin/course/${courseStream}/${courseField}/${courseBranch}`
+              `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}/${courseField}/${courseBranch}`
             )
             .then((res) => {
               console.log(res.data.CourseYearList);
@@ -214,11 +216,12 @@ const FormAddEdit = (props) => {
       coursePrice: coursePrice,
       courseDescription: courseDescription,
       courseInstructor: courseInstructor,
+      courseType: courseType,
     };
     if (addForm) {
       try {
         await axios
-          .post(`https://neelclasses.herokuapp.com/admin/addcourse`, CourseInfo)
+          .post(`${process.env.REACT_APP_API_URL}/admin/addcourse`, CourseInfo)
           .then((res) => {
             setStatus(res.data);
           });
@@ -229,7 +232,7 @@ const FormAddEdit = (props) => {
       CourseInfo.courseId = courseId;
       try {
         await axios
-          .put(`https://neelclasses.herokuapp.com/admin/editcourse`, CourseInfo)
+          .put(`${process.env.REACT_APP_API_URL}/admin/editcourse`, CourseInfo)
           .then((res) => {
             setStatus(res.data);
           });
@@ -319,6 +322,16 @@ const FormAddEdit = (props) => {
               type="text"
               className="course-rating-field"
               name="courseRating"
+              placeholder="Course Type"
+              value={courseType}
+              onChange={(event) => setCourseType(event.target.value)}
+            />
+          </FormGroup>
+          <FormGroup className="form-body-component">
+            <Input
+              type="text"
+              className="course-rating-field"
+              name="courseRating"
               placeholder="Course Rating"
               value={courseRating}
               onChange={(event) => setCourseRating(event.target.value)}
@@ -346,7 +359,7 @@ const FormAddEdit = (props) => {
     return (
       <Alert color="primary">
         <p className="alert-text">Course Added Successfully</p>
-        <Link to={`/course/${courseName}`}>View Course</Link>
+        <Link to={`/course/${courseId}`}>View Course</Link>
       </Alert>
     );
   }
