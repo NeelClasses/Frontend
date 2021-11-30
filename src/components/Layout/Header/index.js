@@ -71,7 +71,18 @@ const Header = () => {
               <DropDown>
                 {dropDown.content.map((item, index) => (
                   <DropDownItem key={index}>
-                    <StyledLink>{item.label}</StyledLink>
+                    <StyledLink
+                      onClick={() =>
+                        history.push({
+                          state: {
+                            apiUrl: item.apiUrl,
+                          },
+                          pathname: item.link,
+                        })
+                      }
+                    >
+                      {item.label}
+                    </StyledLink>
                   </DropDownItem>
                 ))}
               </DropDown>
@@ -112,6 +123,16 @@ const Header = () => {
             >
               Log In
             </Button>
+          )}
+          {userInfo?.id && (
+            <StyledLink
+              key="/my-courses"
+              isSidebar={false}
+              onClick={() => onLinksClicked("/my-courses")}
+              isActive={pathname.includes("/my-courses")}
+            >
+              My Courses
+            </StyledLink>
           )}
           {userInfo?.id && (
             <Button isPrimary={false} isSidebar={false} onClick={handleLogout}>
@@ -170,6 +191,16 @@ const Header = () => {
           >
             Contact
           </StyledLink>
+          {userInfo?.id && (
+            <StyledLink
+              key="/my-courses"
+              isSidebar={false}
+              onClick={() => onLinksClicked("/my-courses")}
+              isActive={pathname.includes("/my-courses")}
+            >
+              My Courses
+            </StyledLink>
+          )}
           <Buttons isSidebar={true}>
             {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button
