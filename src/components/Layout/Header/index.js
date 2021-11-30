@@ -104,6 +104,28 @@ const Header = () => {
           >
             Contact
           </StyledLink>
+          {userInfo?.id && (
+            <DropDownLink>
+              <DropDownHeading>
+                My Account <FontAwesomeIcon icon={faCaretDown} />
+              </DropDownHeading>
+              <DropDown>
+                <DropDownItem>
+                  <StyledLink
+                    isSidebar={false}
+                    onClick={() => onLinksClicked("/my-courses")}
+                  >
+                    My Courses
+                  </StyledLink>
+                </DropDownItem>
+                <DropDownItem>
+                  <StyledLink isSidebar={false} onClick={handleLogout}>
+                    Log Out
+                  </StyledLink>
+                </DropDownItem>
+              </DropDown>
+            </DropDownLink>
+          )}
         </Links>
         <Buttons isSidebar={false}>
           {!userInfo?.id && (
@@ -124,7 +146,7 @@ const Header = () => {
               Log In
             </Button>
           )}
-          {userInfo?.id && (
+          {/* {userInfo?.id && (
             <StyledLink
               key="/my-courses"
               isSidebar={false}
@@ -138,7 +160,7 @@ const Header = () => {
             <Button isPrimary={false} isSidebar={false} onClick={handleLogout}>
               Log Out
             </Button>
-          )}
+          )} */}
         </Buttons>
         <ToggleButton isActive={isSidebarActive} onClick={toggleSidebar}>
           {isSidebarActive ? "Close" : "Menu"}
@@ -167,7 +189,18 @@ const Header = () => {
               <AccordionContent isActive={activeNotes === dropDown.heading}>
                 <AccordionText isActive={activeNotes === dropDown.heading}>
                   {dropDown.content.map((item, index) => (
-                    <StyledLink to="/" key={index}>
+                    <StyledLink
+                      to="/"
+                      key={index}
+                      onClick={() =>
+                        history.push({
+                          state: {
+                            apiUrl: item.apiUrl,
+                          },
+                          pathname: item.link,
+                        })
+                      }
+                    >
                       {item.label}
                     </StyledLink>
                   ))}
@@ -192,6 +225,37 @@ const Header = () => {
             Contact
           </StyledLink>
           {userInfo?.id && (
+            <AccordionWrapper isActive={activeNotes === "my-account"}>
+              <AccordionHeading
+                onClick={() => {
+                  activeNotes === "my-account"
+                    ? setActiveNotes(null)
+                    : setActiveNotes("my-account");
+                }}
+              >
+                <HeadingText>My Account</HeadingText>
+                <FontAwesomeIcon
+                  icon={faCaretDown}
+                  rotation={activeNotes === "my-account" ? "180" : 0}
+                />
+              </AccordionHeading>
+              <AccordionContent isActive={activeNotes === "my-account"}>
+                <AccordionText isActive={activeNotes === "my-account"}>
+                  <StyledLink
+                    isSidebar={true}
+                    onClick={() => onLinksClicked("/my-courses")}
+                    isActive={pathname.includes("/my-courses")}
+                  >
+                    My Courses
+                  </StyledLink>
+                  <StyledLink isSidebar={true} onClick={handleLogout}>
+                    Log Out
+                  </StyledLink>
+                </AccordionText>
+              </AccordionContent>
+            </AccordionWrapper>
+          )}
+          {/* {userInfo?.id && (
             <StyledLink
               key="/my-courses"
               isSidebar={false}
@@ -200,7 +264,7 @@ const Header = () => {
             >
               My Courses
             </StyledLink>
-          )}
+          )} */}
           <Buttons isSidebar={true}>
             {/* {constants.headerDetails.ctaButtons.map((button, index) => (
               <Button
@@ -230,11 +294,11 @@ const Header = () => {
                 Log In
               </Button>
             )}
-            {userInfo?.id && (
+            {/* {userInfo?.id && (
               <Button isPrimary={false} isSidebar={true} onClick={handleLogout}>
                 Log Out
               </Button>
-            )}
+            )} */}
           </Buttons>
         </SidebarWrapper>
       </Sidebar>
