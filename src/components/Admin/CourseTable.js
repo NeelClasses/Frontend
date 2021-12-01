@@ -20,13 +20,10 @@ const TableComponent = (props) => {
         .put(`${process.env.REACT_APP_API_URL}/admin/editcourse`, course)
         .then((res) => {
           setStatus(res.data);
-          console.log(res.data);
         });
     } catch (error) {
-      console.log(`Post Error ${error}`);
     }
   };
-  console.log(props.courses);
   return (
     <div className="table-component">
       <table className="table-body">

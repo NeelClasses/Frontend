@@ -86,16 +86,13 @@ const AdminPanel = (props) => {
           },
         })
         .then((res) => {
-          console.log(res.data.CourseInfoList);
           setCourseInfo(res.data.CourseInfoList);
         });
     } catch (error) {
-      console.log(`Get Error ${error}`);
     }
   };
 
   const fromEditForm = (courseInfo) => {
-    console.log(courseInfo);
     setCourse(courseInfo);
   };
   const editClick = () => {

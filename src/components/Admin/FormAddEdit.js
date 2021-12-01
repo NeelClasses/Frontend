@@ -67,7 +67,6 @@ const FormAddEdit = (props) => {
           axios
             .get(`${process.env.REACT_APP_API_URL}/admin/course`)
             .then((res) => {
-              console.log(res.data.CourseStreamList);
               const courseStreamList = [];
               res.data.CourseStreamList.forEach((stream) => {
                 courseStreamList.push({
@@ -77,9 +76,7 @@ const FormAddEdit = (props) => {
               });
               callback(courseStreamList);
             });
-        } catch (error) {
-          console.log(`Get Error ${error}`);
-        }
+        } catch (error) {}
       });
     }
   };
@@ -101,7 +98,6 @@ const FormAddEdit = (props) => {
               `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}`
             )
             .then((res) => {
-              console.log(res.data.CourseFieldList);
               const courseFieldList = [];
               res.data.CourseFieldList.forEach((field) => {
                 courseFieldList.push({
@@ -111,9 +107,7 @@ const FormAddEdit = (props) => {
               });
               callback(courseFieldList);
             });
-        } catch (error) {
-          console.log(`Get Error ${error}`);
-        }
+        } catch (error) {}
       });
     }
   };
@@ -135,7 +129,6 @@ const FormAddEdit = (props) => {
               `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}/${courseField}`
             )
             .then((res) => {
-              console.log(res.data.CourseBranchList);
               const courseBranchList = [];
               res.data.CourseBranchList.forEach((branch) => {
                 courseBranchList.push({
@@ -145,9 +138,7 @@ const FormAddEdit = (props) => {
               });
               callback(courseBranchList);
             });
-        } catch (error) {
-          console.log(`Get Error ${error}`);
-        }
+        } catch (error) {}
       });
     }
   };
@@ -169,7 +160,6 @@ const FormAddEdit = (props) => {
               `${process.env.REACT_APP_API_URL}/admin/course/${courseStream}/${courseField}/${courseBranch}`
             )
             .then((res) => {
-              console.log(res.data.CourseYearList);
               const courseYearList = [];
               res.data.CourseYearList.forEach((year) => {
                 courseYearList.push({
@@ -179,9 +169,7 @@ const FormAddEdit = (props) => {
               });
               callback(courseYearList);
             });
-        } catch (error) {
-          console.log(`Get Error ${error}`);
-        }
+        } catch (error) {}
       });
     }
   };
@@ -225,9 +213,7 @@ const FormAddEdit = (props) => {
           .then((res) => {
             setStatus(res.data);
           });
-      } catch (error) {
-        console.log(`Post Error ${error}`);
-      }
+      } catch (error) {}
     } else {
       CourseInfo.courseId = courseId;
       try {
@@ -236,9 +222,7 @@ const FormAddEdit = (props) => {
           .then((res) => {
             setStatus(res.data);
           });
-      } catch (error) {
-        console.log(`Post Error ${error}`);
-      }
+      } catch (error) {}
     }
   };
   if (status === "NotDone")

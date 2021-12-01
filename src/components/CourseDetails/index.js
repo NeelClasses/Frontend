@@ -52,7 +52,6 @@ const CourseDetails = () => {
     dispatch = useDispatch(),
     { userInfo } = useSelector((state) => state.userInfo),
     toggleActiveVideo = (videoTitle) => {
-      console.log(videoTitle);
       if (videoTitle === activeVideo) {
         setActiveVideo(null);
       } else {
@@ -68,14 +67,12 @@ const CourseDetails = () => {
     },
     toggleModal = (url) => {
       if (url) {
-        console.log(url);
         setModalVideo(url);
       }
       setActiveModal(!activeModal);
     };
   useEffect(() => {
     if (error) {
-      console.log(error);
     }
   });
   useEffect(() => {
@@ -293,7 +290,7 @@ const CourseDetails = () => {
             </>
           ) : (
             <ProgressWrapper>
-              <h1>Something Went Wrong.</h1>
+              <p>Something Went Wrong.</p>
             </ProgressWrapper>
           )}
         </Content>

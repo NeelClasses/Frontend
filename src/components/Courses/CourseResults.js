@@ -38,7 +38,6 @@ const CourseResults = () => {
       setCourses(data);
     }
     if (error) {
-      console.log(error);
     }
   }, [data, error]);
   useEffect(() => {

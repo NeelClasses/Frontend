@@ -4,7 +4,6 @@ import Modal from "../Modal";
 import ReactPlayer from "react-player";
 
 const VideoPlayer = ({ isOpen, toggleModal, videoSource }) => {
-  console.log(videoSource);
   // const [source] = useState({
   //   type: "video",
   //   sources: [

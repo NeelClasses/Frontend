@@ -59,7 +59,6 @@ const Login = (props) => {
         axios
           .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
           .then((res) => {
-            console.log(res);
             if (res.data !== "Done") {
               let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
               firebase
@@ -93,7 +92,6 @@ const Login = (props) => {
           code
         );
         firebase.auth().signInWithCredential(credential);
-        console.log(result);
         const LogInfo = {
           mobile: result.user.phoneNumber,
         };
@@ -114,7 +112,7 @@ const Login = (props) => {
 
         setLogin(true);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }
   return (
     <SignupWrapper>

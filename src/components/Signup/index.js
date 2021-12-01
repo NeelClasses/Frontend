@@ -69,7 +69,7 @@ const Signup = (props) => {
             alert(err);
           });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,7 +88,6 @@ const Signup = (props) => {
       axios
         .post(`${process.env.REACT_APP_API_URL}/signup`, SignUpInfo)
         .then((res) => {
-          console.log(res);
           if (res.data === "Done") {
             let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
 

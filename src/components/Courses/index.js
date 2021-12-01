@@ -55,7 +55,6 @@ const Courses = () => {
       setCourses(data);
     }
     if (error) {
-      console.log(error);
     }
   }, [data, error]);
   useEffect(() => {
@@ -93,13 +92,14 @@ const Courses = () => {
             </SearchBarWrapper>
           </form>
         </TopSection>
-        <CourseGrid>
-          {loading ? (
-            <ProgressWrapper>
-              <CircularProgress />
-            </ProgressWrapper>
-          ) : courseDisplay.length !== 0 ? (
-            courseDisplay.map((course) => (
+
+        {loading ? (
+          <ProgressWrapper>
+            <CircularProgress />
+          </ProgressWrapper>
+        ) : courseDisplay.length !== 0 ? (
+          <CourseGrid>
+            {courseDisplay.map((course) => (
               <CourseComponent
                 key={course.courseId}
                 courseImage={courseImg}
@@ -107,21 +107,21 @@ const Courses = () => {
                 coursePrice={course.coursePrice}
                 courseId={course.courseId}
               />
-            ))
-          ) : (
-            <ProgressWrapper>
-              <h1>Something went wrong.</h1>
-            </ProgressWrapper>
-          )}
-        </CourseGrid>
-        {courseDisplay.length !== 0 && (
-          <PaginationWrapper>
-            <Pagination
-              count={Math.ceil(courses.length / 12)}
-              page={activePage}
-              onChange={handlePageChange}
-            />
-          </PaginationWrapper>
+            ))}
+            {courseDisplay.length !== 0 && (
+              <PaginationWrapper>
+                <Pagination
+                  count={Math.ceil(courses.length / 12)}
+                  page={activePage}
+                  onChange={handlePageChange}
+                />
+              </PaginationWrapper>
+            )}
+          </CourseGrid>
+        ) : (
+          <ProgressWrapper>
+            <p>Something went wrong.</p>
+          </ProgressWrapper>
         )}
       </Content>
     </CoursesWrapper>

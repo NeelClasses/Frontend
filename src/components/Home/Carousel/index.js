@@ -30,7 +30,6 @@ export const Carousel = () => {
     [data, error, loading] = useFetchCourses("/courses");
   useEffect(() => {
     if (error) {
-      console.log(error);
     }
   });
   return (

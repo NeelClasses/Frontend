@@ -44,9 +44,7 @@ const FormUpload = (props) => {
         .then((res) => {
           setCourseList(res.data.CourseList);
         });
-    } catch (error) {
-      console.log(`Get Error ${error}`);
-    }
+    } catch (error) {}
   };
 
   const onCourseSelect = (event) => {
@@ -74,9 +72,7 @@ const FormUpload = (props) => {
         );
         setUploadPercentage(uploadPercentage);
       },
-      (error) => {
-        console.log(error);
-      },
+      (error) => {},
       () => {
         storage
           .ref(`${videosNotes !== "Notes" ? "Videos" : "Notes"}`)
@@ -99,18 +95,14 @@ const FormUpload = (props) => {
                       VideoInfo
                     )
                     .then((res) => {
-                      console.log(res.data);
                       if (res.data === "Done") {
                         setStatus(res.data);
                       } else {
                         setStatus("NotDone");
                       }
                     });
-                } catch (error) {
-                  console.log(`Post Error for Video ${error}`);
-                }
+                } catch (error) {}
               } else {
-                console.log("Course Info Not Selected");
               }
             } else {
               if (url != null && courseInfo != null && docTitle != null) {
@@ -129,7 +121,6 @@ const FormUpload = (props) => {
                       DocInfo
                     )
                     .then((res) => {
-                      console.log(res.data);
                       if (res.data === "Done") {
                         setStatus(res.data);
                       } else {
@@ -137,7 +128,6 @@ const FormUpload = (props) => {
                       }
                     });
                 } catch (error) {
-                  console.log(`Post Error for Notes ${error}`);
                 }
               }
             }
