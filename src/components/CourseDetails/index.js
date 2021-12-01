@@ -24,6 +24,7 @@ import {
   faAward,
   faCodeBranch,
   faUser,
+  faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { constants } from "../../constants";
 import { useEffect, useState } from "react";
@@ -268,6 +269,17 @@ const CourseDetails = () => {
                       <RowCell>
                         <Ratings stars={stars} />
                       </RowCell>
+                    </Detail>
+                    <Detail>
+                      <RowCell>
+                        <FontAwesomeIcon
+                          icon={faFileAlt}
+                          color={constants.colors.secondaryColor}
+                        />
+                      </RowCell>
+                      <RowCell>Description</RowCell>
+                      <RowCell>:</RowCell>
+                      <RowCell>{CourseInfo?.courseDescription ?? "-"}</RowCell>
                     </Detail>
                   </Details>
                 </RightSection>
