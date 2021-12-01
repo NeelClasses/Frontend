@@ -45,7 +45,7 @@ export const constants = {
           {
             label: "Math",
             link: "/courses/engg/math",
-            apiUrl: "coursesByNav/Engineering/Math", // remaining
+            apiUrl: "coursesByNav/Engineering/Math",
           },
           {
             label: "Mech",
@@ -63,9 +63,14 @@ export const constants = {
             apiUrl: "coursesByNav/Engineering/Videos",
           },
           {
+            label: "Notes",
+            link: "/courses/engg/notes",
+            apiUrl: "coursesByNav/Engineering/Notes",
+          },
+          {
             label: "MCQ",
             link: "/courses/engg/mcq",
-            apiUrl: "coursesByNav/Engineering/Notes",
+            apiUrl: "coursesByNav/Engineering/Mcq",
           },
         ],
       },
@@ -75,7 +80,7 @@ export const constants = {
           {
             label: "Math",
             link: "/courses/diploma/math",
-            apiUrl: "coursesByNav/Diploma/Math", // remaining
+            apiUrl: "coursesByNav/Diploma/Math",
           },
           {
             label: "Mech",
@@ -93,29 +98,34 @@ export const constants = {
             apiUrl: "coursesByNav/Diploma/Videos",
           },
           {
+            label: "Notes",
+            link: "/courses/diploma/notes",
+            apiUrl: "coursesByNav/Diploma/Notes",
+          },
+          {
             label: "MCQ",
             link: "/courses/diploma/mcq",
-            apiUrl: "coursesByNav/Diploma/Notes",
+            apiUrl: "coursesByNav/Diploma/Mcq",
           },
         ],
       },
       {
-        heading: "GATE", // all remaining
+        heading: "GATE",
         content: [
           {
             label: "Math",
             link: "/courses/gate/math",
-            apiUrl: "coursesByNav/12th/Videos",
+            apiUrl: "coursesByNav/gate/Math",
           },
           {
             label: "Aptitude",
             link: "/courses/gate/apt",
-            apiUrl: "coursesByNav/12th/Videos",
+            apiUrl: "coursesByNav/gate/Aptitude",
           },
           {
             label: "Videos",
             link: "/courses/gate/videos",
-            apiUrl: "coursesByNav/12th/Videos",
+            apiUrl: "coursesByNav/gate/Videos",
           },
         ],
       },
@@ -130,7 +140,12 @@ export const constants = {
           {
             label: "MHTCET and JEE",
             link: "/courses/eleventh/cetjee",
-            apiUrl: "coursesByNav/11th/cetjee", // remaining
+            apiUrl: "coursesByNav/11th/MHCET-and-JEE", // remaining
+          },
+          {
+            label: "Math",
+            link: "/courses/eleventh/math",
+            apiUrl: "coursesByNav/11th/Math",
           },
           {
             label: "Videos",
@@ -145,12 +160,17 @@ export const constants = {
           {
             label: "Regular",
             link: "/courses/hsc/regular",
-            apiUrl: "coursesByNav/HSC/Regular", // remaining
+            apiUrl: "coursesByNav/HSC/Regular",
           },
           {
             label: "MHTCET and JEE",
             link: "/courses/hsc/cetjee",
-            apiUrl: "coursesByNav/HSC/cetjee", // remaining
+            apiUrl: "coursesByNav/HSC/MHCET-and-JEE",
+          },
+          {
+            label: "Math",
+            link: "/courses/hsc/math",
+            apiUrl: "coursesByNav/HSC/Math",
           },
           {
             label: "Videos",
@@ -165,7 +185,7 @@ export const constants = {
           {
             label: "Math",
             link: "/courses/bsc/math",
-            apiUrl: "coursesByNav/BSC/Math", // remaining
+            apiUrl: "coursesByNav/BSC/Math",
           },
           {
             label: "Videos",

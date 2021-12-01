@@ -21,33 +21,25 @@ import { CircularProgress, Pagination } from "@mui/material";
 import { useLocation } from "react-router";
 
 const CourseResults = () => {
-  const [courses, setCourses] = useState([]),
-    location = useLocation(),
+  const location = useLocation(),
     [apiUrl, setApiUrl] = useState(""),
-    [data, error, loading] = useFetchCoursesByType(apiUrl),
+    [data,, loading] = useFetchCoursesByType(apiUrl),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handlePageChange = (event, value) => {
       setActivePage(value);
       let indexOfLastCourse = value * 12;
       let indexOfFirstCourse = indexOfLastCourse - 12;
-      setCourseDisplay(courses.slice(indexOfFirstCourse, indexOfLastCourse));
+      setCourseDisplay(data.slice(indexOfFirstCourse, indexOfLastCourse));
     };
-  useEffect(() => {
-    if (data?.length !== 0) {
-      setCourses(data);
-    }
-    if (error) {
-    }
-  }, [data, error]);
   useEffect(() => {
     location.state.apiUrl !== "" && setApiUrl(location.state.apiUrl);
   }, [location.state.apiUrl]);
   useEffect(() => {
-    if (courses?.length !== 0) {
-      setCourseDisplay(courses?.slice(0, 12));
+    if (data?.length !== 0) {
+      setCourseDisplay(data?.slice(0, 12));
     }
-  }, [courses]);
+  }, [data]);
   return (
     <CoursesWrapper>
       <TitleSection>
@@ -65,7 +57,7 @@ const CourseResults = () => {
           <ProgressWrapper>
             <CircularProgress />
           </ProgressWrapper>
-        ) : courses?.length > 0 ? (
+        ) : data?.length > 0 ? (
           <>
             <TopSection>
               <CoursesHeading>Courses</CoursesHeading>
@@ -81,12 +73,11 @@ const CourseResults = () => {
                     courseId={course.courseId}
                   />
                 ))}
-              {/* {error && <p>Something went wrong.</p>} */}
             </CourseGrid>
-            {courses && courseDisplay?.length !== 0 && (
+            {data && courseDisplay?.length !== 0 && (
               <PaginationWrapper>
                 <Pagination
-                  count={Math.ceil(courses.length / 12)}
+                  count={Math.ceil(data.length / 12)}
                   page={activePage}
                   onChange={handlePageChange}
                 />
