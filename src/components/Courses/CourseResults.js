@@ -23,7 +23,7 @@ import { useLocation } from "react-router";
 const CourseResults = () => {
   const location = useLocation(),
     [apiUrl, setApiUrl] = useState(""),
-    [data,, loading] = useFetchCoursesByType(apiUrl),
+    [data, error, loading] = useFetchCoursesByType(apiUrl),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handlePageChange = (event, value) => {
@@ -53,41 +53,48 @@ const CourseResults = () => {
         </Content>
       </TitleSection>
       <Content>
+        <TopSection>
+          <CoursesHeading>Courses</CoursesHeading>
+        </TopSection>
         {loading ? (
           <ProgressWrapper>
             <CircularProgress />
           </ProgressWrapper>
-        ) : data?.length > 0 ? (
+        ) : (
           <>
-            <TopSection>
-              <CoursesHeading>Courses</CoursesHeading>
-            </TopSection>
-            <CourseGrid>
-              {courseDisplay?.length !== 0 &&
-                courseDisplay?.map((course) => (
-                  <CourseComponent
-                    key={course.courseId}
-                    courseImage={courseImg}
-                    courseTitle={course.courseName}
-                    coursePrice={course.coursePrice}
-                    courseId={course.courseId}
-                  />
-                ))}
-            </CourseGrid>
-            {data && courseDisplay?.length !== 0 && (
-              <PaginationWrapper>
-                <Pagination
-                  count={Math.ceil(data.length / 12)}
-                  page={activePage}
-                  onChange={handlePageChange}
-                />
-              </PaginationWrapper>
+            {data?.length > 0 ? (
+              <>
+                <CourseGrid>
+                  {courseDisplay?.length !== 0 &&
+                    courseDisplay?.map((course) => (
+                      <CourseComponent
+                        key={course.courseId}
+                        courseImage={courseImg}
+                        courseTitle={course.courseName}
+                        coursePrice={course.coursePrice}
+                        courseId={course.courseId}
+                      />
+                    ))}
+                </CourseGrid>
+                {data && courseDisplay?.length !== 0 && (
+                  <PaginationWrapper>
+                    <Pagination
+                      count={Math.ceil(data.length / 12)}
+                      page={activePage}
+                      onChange={handlePageChange}
+                    />
+                  </PaginationWrapper>
+                )}
+              </>
+            ) : (
+              <ProgressWrapper>
+                <p>No Courses Found</p>
+              </ProgressWrapper>
+            )}
+            {error && (
+              <ProgressWrapper>Something went wrong! try again</ProgressWrapper>
             )}
           </>
-        ) : (
-          <ProgressWrapper>
-            <h1>No Courses Found</h1>
-          </ProgressWrapper>
         )}
       </Content>
     </CoursesWrapper>
