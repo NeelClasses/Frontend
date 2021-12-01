@@ -110,14 +110,26 @@ const Header = () => {
                 My Account <FontAwesomeIcon icon={faCaretDown} />
               </DropDownHeading>
               <DropDown>
-                <DropDownItem>
-                  <StyledLink
-                    isSidebar={false}
-                    onClick={() => onLinksClicked("/my-courses")}
-                  >
-                    My Courses
-                  </StyledLink>
-                </DropDownItem>
+                {userInfo?.role !== "Admin" && (
+                  <DropDownItem>
+                    <StyledLink
+                      isSidebar={false}
+                      onClick={() => onLinksClicked("/my-courses")}
+                    >
+                      My Courses
+                    </StyledLink>
+                  </DropDownItem>
+                )}
+                {userInfo?.role === "Admin" && (
+                  <DropDownItem>
+                    <StyledLink
+                      isSidebar={false}
+                      onClick={() => onLinksClicked("/admin")}
+                    >
+                      Admin
+                    </StyledLink>
+                  </DropDownItem>
+                )}
                 <DropDownItem>
                   <StyledLink isSidebar={false} onClick={handleLogout}>
                     Log Out
