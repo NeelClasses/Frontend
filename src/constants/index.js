@@ -33,10 +33,21 @@ export const constants = {
       {
         heading: "Home",
         content: [
-          { label: "Colour Chart", link: "/" },
-          { label: "Popular Courses", link: "/" },
-          { label: "Notes", link: "/" },
-          { label: "Videos", link: "/" },
+          {
+            label: "Colour Chart",
+            link: "/courses/home/color-chart",
+            apiUrl: "homeCourses/color-chart",
+          },
+          {
+            label: "Notes",
+            link: "/courses/home/notes",
+            apiUrl: "homeCourses/Notes",
+          },
+          {
+            label: "Videos",
+            link: "/courses/home/videos",
+            apiUrl: "homeCourses/Videos",
+          },
         ],
       },
       {

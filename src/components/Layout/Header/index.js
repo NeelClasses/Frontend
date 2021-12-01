@@ -253,13 +253,24 @@ const Header = () => {
               </AccordionHeading>
               <AccordionContent isActive={activeNotes === "my-account"}>
                 <AccordionText isActive={activeNotes === "my-account"}>
-                  <StyledLink
-                    isSidebar={true}
-                    onClick={() => onLinksClicked("/my-courses")}
-                    isActive={pathname.includes("/my-courses")}
-                  >
-                    My Courses
-                  </StyledLink>
+                  {userInfo?.role !== "Admin" && (
+                    <StyledLink
+                      isSidebar={true}
+                      onClick={() => onLinksClicked("/my-courses")}
+                      isActive={pathname.includes("/my-courses")}
+                    >
+                      My Courses
+                    </StyledLink>
+                  )}
+                  {userInfo.role === "Admin" && (
+                    <StyledLink
+                      isSidebar={true}
+                      onClick={() => onLinksClicked("/admin")}
+                      isActive={pathname.includes("/admin")}
+                    >
+                      My Courses
+                    </StyledLink>
+                  )}
                   <StyledLink isSidebar={true} onClick={handleLogout}>
                     Log Out
                   </StyledLink>
