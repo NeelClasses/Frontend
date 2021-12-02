@@ -6,6 +6,7 @@ const useFetchCoursesByType = (apiUrl) => {
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setError({});
     setData([]);
     setLoading(true);
     const fetchData = async () => {
