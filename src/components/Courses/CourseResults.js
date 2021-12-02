@@ -23,7 +23,7 @@ import { useLocation } from "react-router";
 const CourseResults = () => {
   const location = useLocation(),
     [apiUrl, setApiUrl] = useState(""),
-    [data, error, loading] = useFetchCoursesByType(apiUrl),
+    [data, , loading] = useFetchCoursesByType(apiUrl),
     [activePage, setActivePage] = useState(1),
     [courseDisplay, setCourseDisplay] = useState([]),
     handlePageChange = (event, value) => {
@@ -90,9 +90,6 @@ const CourseResults = () => {
               <ProgressWrapper>
                 <p>No Courses Found</p>
               </ProgressWrapper>
-            )}
-            {error && (
-              <ProgressWrapper>Something went wrong! try again</ProgressWrapper>
             )}
           </>
         )}
