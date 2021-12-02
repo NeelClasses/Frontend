@@ -18,10 +18,13 @@ import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { login } from "../../store/actions";
 
 const Login = (props) => {
+  const { userInfo } = useSelector((state) => state.userInfo);
+  const history = useHistory();
   const [otp, setOtp] = useState("");
   const [otpVisibility, setOtpvisibility] = useState(true);
   const [firebaseEvent, setEvent] = useState();
@@ -113,6 +116,10 @@ const Login = (props) => {
         setLogin(true);
       })
       .catch((error) => {});
+  }
+
+  if (userInfo?.id) {
+    history.push("/");
   }
   return (
     <SignupWrapper>

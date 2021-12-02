@@ -18,8 +18,12 @@ import validations from "../../constants/validations";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import firebase from "../../firebase";
+import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const Signup = (props) => {
+  const { userInfo } = useSelector((state) => state.userInfo);
+  const history = useHistory();
   const [inputs, setInputs] = useState({
       fullName: "",
       number: "",
@@ -110,6 +114,9 @@ const Signup = (props) => {
         });
     }
   };
+  if (userInfo?.id) {
+    history.push("/");
+  }
   return (
     <SignupWrapper>
       <LeftSection>
