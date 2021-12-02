@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const CourseWrapper = styled.div``;
 
@@ -59,7 +59,7 @@ export const Price = styled.h3`
 `;
 
 export const EnrollBtn = styled.a`
-  color: var(--primary-color);
+  color: ${({ isEnrolled }) => (isEnrolled ? "#fff" : "var(--primary-color)")};
   padding: 0.5rem 1.2rem;
   border: 1px solid var(--primary-color);
   margin-top: 2rem;
@@ -67,10 +67,17 @@ export const EnrollBtn = styled.a`
   font-weight: 700;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
-  &:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
+  background-color: ${({ isEnrolled }) =>
+    isEnrolled ? "var(--primary-color)" : "#fff"};
+  ${(props) =>
+    props.isEnrolled
+      ? ""
+      : css`
+          &:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+          }
+        `}
 `;
 
 export const Details = styled.table`
