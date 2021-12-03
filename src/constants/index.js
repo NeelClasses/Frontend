@@ -151,7 +151,7 @@ export const constants = {
           {
             label: "MHTCET and JEE",
             link: "/courses/eleventh/cetjee",
-            apiUrl: "coursesByNav/11th/MHCET-and-JEE", // remaining
+            apiUrl: "coursesByNav/11th/MHTCET-and-JEE", // remaining
           },
           {
             label: "Math",
@@ -176,7 +176,7 @@ export const constants = {
           {
             label: "MHTCET and JEE",
             link: "/courses/hsc/cetjee",
-            apiUrl: "coursesByNav/HSC/MHCET-and-JEE",
+            apiUrl: "coursesByNav/HSC/MHTCET-and-JEE",
           },
           {
             label: "Math",
