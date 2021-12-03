@@ -229,7 +229,11 @@ const CourseDetails = () => {
                 </LeftSection>
                 <RightSection>
                   <Price>&#8377;{CourseInfo?.coursePrice}</Price>
-                  <EnrollBtn disabled={courseAccess} onClick={handlePurchase}>
+                  <EnrollBtn
+                    disabled={courseAccess}
+                    onClick={handlePurchase}
+                    isEnrolled={courseAccess}
+                  >
                     {courseAccess ? "Enrolled" : "Enroll Now"}
                   </EnrollBtn>
                   <Details>

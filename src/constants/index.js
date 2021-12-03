@@ -1,8 +1,4 @@
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export const constants = {
   colors: {
@@ -38,16 +34,16 @@ export const constants = {
             link: "/courses/home/color-chart",
             apiUrl: "homeCourses/color-chart",
           },
-          {
-            label: "Notes",
-            link: "/courses/home/notes",
-            apiUrl: "homeCourses/Notes",
-          },
-          {
-            label: "Videos",
-            link: "/courses/home/videos",
-            apiUrl: "homeCourses/Videos",
-          },
+          // {
+          //   label: "Notes",
+          //   link: "/courses/home/notes",
+          //   apiUrl: "homeCourses/Notes",
+          // },
+          // {
+          //   label: "Videos",
+          //   link: "/courses/home/videos",
+          //   apiUrl: "homeCourses/Videos",
+          // },
         ],
       },
       {
@@ -219,8 +215,7 @@ export const constants = {
     ],
     socialLinks: [
       { icon: faFacebook, to: "/" },
-      { icon: faInstagram, to: "/" },
-      { icon: faTwitter, to: "/" },
+      { icon: faYoutube, to: "/" },
     ],
   },
 };
