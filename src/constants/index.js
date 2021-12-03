@@ -126,17 +126,17 @@ export const constants = {
           {
             label: "Math",
             link: "/courses/gate/math",
-            apiUrl: "coursesByNav/gate/Math",
+            apiUrl: "coursesByNav/Gate/Math",
           },
           {
             label: "Aptitude",
             link: "/courses/gate/apt",
-            apiUrl: "coursesByNav/gate/Aptitude",
+            apiUrl: "coursesByNav/Gate/Aptitude",
           },
           {
             label: "Videos",
             link: "/courses/gate/videos",
-            apiUrl: "coursesByNav/gate/Videos",
+            apiUrl: "coursesByNav/Gate/Videos",
           },
         ],
       },
