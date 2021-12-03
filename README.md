@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/855d7b6c-bc0a-49db-995b-fc47f42b1b82/deploy-status)](https://app.netlify.com/sites/neelclasses-dev/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7a8d711a-a102-4045-831e-4a5cddaf4cca/deploy-status)](https://app.netlify.com/sites/neelclasses-dev/deploys)
 
 # Getting Started with Create React App
 
