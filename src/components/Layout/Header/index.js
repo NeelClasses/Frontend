@@ -268,7 +268,7 @@ const Header = () => {
                       onClick={() => onLinksClicked("/admin")}
                       isActive={pathname.includes("/admin")}
                     >
-                      My Courses
+                      Admin
                     </StyledLink>
                   )}
                   <StyledLink isSidebar={true} onClick={handleLogout}>
