@@ -5,12 +5,9 @@ import {
   TextSection,
   TopText,
   TextWrapper,
-  StartButton,
   Video,
 } from "./styled";
 import { Content } from "../../../globalStyles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Modal from "../../Modal";
 const YTVideo = () => {
@@ -41,10 +38,10 @@ const Hero = () => {
               sit amet Lorem ipsum dol sit amet Lorem ipsum dol sit amet Lorem
               ipsum dol sit amet Lorem ipsum dol sit amet
             </SubText>
-            <StartButton onClick={toggleModal}>
+            {/* <StartButton onClick={toggleModal}>
               Let's Start &nbsp;
               <FontAwesomeIcon icon={faPlay} />
-            </StartButton>
+            </StartButton> */}
           </TextSection>
         </TextWrapper>
       </Content>

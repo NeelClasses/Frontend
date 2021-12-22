@@ -214,8 +214,11 @@ export const constants = {
       { label: "About us", to: "/about" },
     ],
     socialLinks: [
-      { icon: faFacebook, to: "/" },
-      { icon: faYoutube, to: "/" },
+      {
+        icon: faFacebook,
+        to: "https://www.facebook.com/rahulsureshbadgujar-104849097641600/",
+      },
+      { icon: faYoutube, to: "https://www.youtube.com/" },
     ],
   },
 };

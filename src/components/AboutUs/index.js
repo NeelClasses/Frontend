@@ -11,7 +11,7 @@ import {
   ContactButton,
   ContentTextSection,
 } from "./styled";
-import contentImg from "../../constants/Images/about.jpg";
+import contentImg from "../../constants/Images/RahulSir.jpg";
 import { Content } from "../../globalStyles";
 const AboutUs = () => {
   return (

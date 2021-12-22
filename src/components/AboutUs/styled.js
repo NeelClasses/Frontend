@@ -72,9 +72,9 @@ export const ContentSection = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 500px;
+  width: 250px;
   @media only screen and (max-width: 840px) {
-    width: 400px;
+    width: 200px;
   }
 `;
 
@@ -91,6 +91,7 @@ export const TextSection = styled.div`
   }
   @media only screen and (max-width: 768px) {
     margin-left: 0;
+    text-align: center;
   }
 `;
 
