@@ -14,18 +14,18 @@ import { useEffect } from "react";
 export const Carousel = () => {
   const popularCourses = [
       "oADp2HHdobKpLFY2Q0fy",
+      "9CAsvbWX7lONzA3SWaAC",
+      "SlNl7JJoIwLFBy5BsUiH",
       "GAsKd8ESK4QLvXEJqJ0y",
       "T1mGWNFOavFKT6NS5q9J",
       "qGRIPWnpF5eFqNk6He0u",
       "1gAROP0s70ljSRW9bkv7",
-      "t73UpvWhYZl0mXT02r9w",
-      "7ZBgl9vbpnb6r7uhWOjn",
-      "F3nWAWzg2ClVLsewDtrB",
-      "pqOjx3z3bT4Hv4GhYKAY",
-      "2Vxn44jPLPxLQgujrTE3",
-      "05TYcUWJPMlxpR8Avswk",
-      "RjaRxFnMEmFip2MgBNEI",
-      "TpJcPlPUnyIc0zJuipqX",
+      "h1cHYG8JKpEamsujba2p",
+      "AeALenKrN5FXlVEzNDPg",
+      "9H1jiKfpFdONX9ww1Bvh",
+      "RcTuc4brI6pg3mYDho7B",
+      "0IZhIByif6tV4dTw0cGx",
+      "MBOkEdBQ5rMqpv28mDhp",
     ],
     [data, error, loading] = useFetchCourses("/courses");
   useEffect(() => {
