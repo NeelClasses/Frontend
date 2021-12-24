@@ -6,19 +6,22 @@ import {
   TopText,
   TextWrapper,
   Video,
+  StartButton,
 } from "./styled";
 import { Content } from "../../../globalStyles";
 import { useState } from "react";
 import Modal from "../../Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 const YTVideo = () => {
   return (
     <Video
-      src="https://www.youtube-nocookie.com/embed/YTJg8q9Q940"
+      src="https://www.youtube.com/watch?v=NSzJa0NVzRE"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
-    ></Video>
+    />
   );
 };
 const Hero = () => {
@@ -38,10 +41,10 @@ const Hero = () => {
               sit amet Lorem ipsum dol sit amet Lorem ipsum dol sit amet Lorem
               ipsum dol sit amet Lorem ipsum dol sit amet
             </SubText>
-            {/* <StartButton onClick={toggleModal}>
+            <StartButton onClick={toggleModal}>
               Let's Start &nbsp;
               <FontAwesomeIcon icon={faPlay} />
-            </StartButton> */}
+            </StartButton>
           </TextSection>
         </TextWrapper>
       </Content>

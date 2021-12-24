@@ -218,7 +218,10 @@ export const constants = {
         icon: faFacebook,
         to: "https://www.facebook.com/rahulsureshbadgujar-104849097641600/",
       },
-      { icon: faYoutube, to: "https://www.youtube.com/" },
+      {
+        icon: faYoutube,
+        to: "https://www.youtube.com/channel/UC4B2t9cCzAx3vC-wXT6auQA",
+      },
     ],
   },
 };
