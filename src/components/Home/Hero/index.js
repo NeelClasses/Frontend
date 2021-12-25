@@ -16,7 +16,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 const YTVideo = () => {
   return (
     <Video
-      src="https://www.youtube.com/watch?v=NSzJa0NVzRE"
+      src="https://www.youtube.com/embed/NSzJa0NVzRE"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
