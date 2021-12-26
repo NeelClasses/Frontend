@@ -27,6 +27,7 @@ const PaySuccess = (props) => {
       const Info = {
         uid: userInfo.id,
         courseId: courseInfo.courseId,
+        courseName: courseInfo.courseName,
         orderId: orderId,
         txnId: txnId,
       };

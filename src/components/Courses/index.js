@@ -98,16 +98,18 @@ const Courses = () => {
             <CircularProgress />
           </ProgressWrapper>
         ) : courseDisplay.length !== 0 ? (
-          <CourseGrid>
-            {courseDisplay.map((course) => (
-              <CourseComponent
-                key={course.courseId}
-                courseImage={courseImg}
-                courseTitle={course.courseName}
-                coursePrice={course.coursePrice}
-                courseId={course.courseId}
-              />
-            ))}
+          <>
+            <CourseGrid>
+              {courseDisplay.map((course) => (
+                <CourseComponent
+                  key={course.courseId}
+                  courseImage={courseImg}
+                  courseTitle={course.courseName}
+                  coursePrice={course.coursePrice}
+                  courseId={course.courseId}
+                />
+              ))}
+            </CourseGrid>
             {courseDisplay.length !== 0 && (
               <PaginationWrapper>
                 <Pagination
@@ -117,7 +119,7 @@ const Courses = () => {
                 />
               </PaginationWrapper>
             )}
-          </CourseGrid>
+          </>
         ) : (
           <ProgressWrapper>
             <p>Something went wrong.</p>

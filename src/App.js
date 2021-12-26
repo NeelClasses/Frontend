@@ -17,6 +17,7 @@ import AddEditForm from "./components/Admin/AddEditForm";
 import PaySuccess from "./components/Payments/PaySuccess";
 import PayFailed from "./components/Payments/PayFailed";
 import CourseResults from "./components/Courses/CourseResults";
+import MyCourses from "./components/Courses/MyCourses";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Switch>
             <RouteLayout path="/" exact component={Home} />
             <RouteLayout path="/courses" exact component={Courses} />
-            <RouteLayout path="/my-courses" exact component={Courses} />
+            <RouteLayout path="/my-courses" exact component={MyCourses} />
             <RouteLayout path="/about" exact component={AboutUs} />
             <RouteLayout path="/contact" exact component={ContactUs} />
             <RouteLayout path="/course/:courseId" component={CourseDetails} />
