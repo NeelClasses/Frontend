@@ -1,22 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { withRouter } from "react-router-dom";
-const PayFailed = (props) => {
-  const { course } = useSelector((state) => state.course);
+const PayFailed = () => {
+  const history = useHistory();
   useEffect(() => {
-    callfail(course.courseId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function callfail(cid) {
+    const courseId = JSON.parse(localStorage.getItem("courseId"));
     alert("Payment failed, Please try after some time.");
-    props.history.push(`/course/${cid}`);
-  }
+    history.push(`/course/${courseId}`);
+  }, [history]);
+
   return (
     <div>
       <h1>Payment Failed...</h1>
     </div>
   );
 };
-export default withRouter(PayFailed);
+export default PayFailed;
