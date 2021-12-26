@@ -27,7 +27,7 @@ import {
   faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { constants } from "../../constants";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import VideoPlayer from "./VideoPlayer";
 import useFetchCourseDetails from "../Hooks/useFetchCourseDetails";
 import { useParams } from "react-router";
@@ -52,26 +52,35 @@ const CourseDetails = () => {
     [stars, setStars] = useState([]),
     dispatch = useDispatch(),
     { userInfo } = useSelector((state) => state.userInfo),
-    toggleActiveVideo = (videoTitle) => {
-      if (videoTitle === activeVideo) {
-        setActiveVideo(null);
-      } else {
-        setActiveVideo(videoTitle);
-      }
-    },
-    toggleActiveNotes = (noteTitle) => {
-      if (noteTitle === activeNotes) {
-        setActiveNotes(null);
-      } else {
-        setActiveNotes(noteTitle);
-      }
-    },
-    toggleModal = (url) => {
-      if (url) {
-        setModalVideo(url);
-      }
-      setActiveModal(!activeModal);
-    };
+    toggleActiveVideo = useCallback(
+      (videoTitle) => {
+        if (videoTitle === activeVideo) {
+          setActiveVideo(null);
+        } else {
+          setActiveVideo(videoTitle);
+        }
+      },
+      [activeVideo]
+    ),
+    toggleActiveNotes = useCallback(
+      (noteTitle) => {
+        if (noteTitle === activeNotes) {
+          setActiveNotes(null);
+        } else {
+          setActiveNotes(noteTitle);
+        }
+      },
+      [activeNotes]
+    ),
+    toggleModal = useCallback(
+      (url) => {
+        if (url) {
+          setModalVideo(url);
+        }
+        setActiveModal(!activeModal);
+      },
+      [activeModal]
+    );
   useEffect(() => {
     if (error) {
     }
@@ -188,10 +197,8 @@ const CourseDetails = () => {
           .then((res) => {
             if (res.data === "Yes") {
               setCourseAccess(true);
-              return false;
             } else {
               setCourseAccess(false);
-              return true;
             }
           })
           .catch((err) => {
@@ -201,6 +208,37 @@ const CourseDetails = () => {
       checkAccess();
     }
   }, [courseId, userInfo]);
+
+  const courseNotesAndVideos = useMemo(
+    () =>
+      courseAccess ? (
+        <>
+          <VideoAccordions
+            toggleActiveVideo={toggleActiveVideo}
+            activeVideo={activeVideo}
+            toggleModal={toggleModal}
+            courseVideos={CourseInfo?.courseVideos}
+          />
+          <NoteAccordions
+            toggleActiveNotes={toggleActiveNotes}
+            activeNotes={activeNotes}
+            courseNotes={CourseInfo?.courseNotes}
+          />
+        </>
+      ) : (
+        <> </>
+      ),
+    [
+      CourseInfo?.courseNotes,
+      CourseInfo?.courseVideos,
+      activeNotes,
+      activeVideo,
+      toggleActiveNotes,
+      toggleActiveVideo,
+      toggleModal,
+      courseAccess,
+    ]
+  );
   return (
     <>
       <CourseWrapper>
@@ -229,13 +267,17 @@ const CourseDetails = () => {
                 </LeftSection>
                 <RightSection>
                   <Price>&#8377;{CourseInfo?.coursePrice}</Price>
-                  <EnrollBtn
-                    disabled={courseAccess}
-                    onClick={handlePurchase}
-                    isEnrolled={courseAccess}
-                  >
-                    {courseAccess ? "Enrolled" : "Enroll Now"}
-                  </EnrollBtn>
+                  {CourseInfo?.coursePrice.toLowerCase() === "free" ? (
+                    <EnrollBtn>Enrolled</EnrollBtn>
+                  ) : (
+                    <EnrollBtn
+                      disabled={courseAccess}
+                      onClick={handlePurchase}
+                      isEnrolled={courseAccess}
+                    >
+                      {courseAccess ? "Enrolled" : "Enroll Now"}
+                    </EnrollBtn>
+                  )}
                   <Details>
                     <Detail>
                       <RowCell>
@@ -288,7 +330,7 @@ const CourseDetails = () => {
                   </Details>
                 </RightSection>
               </ContentSection>
-              {courseAccess && CourseInfo && (
+              {CourseInfo?.coursePrice.toLowerCase() === "free" ? (
                 <>
                   <VideoAccordions
                     toggleActiveVideo={toggleActiveVideo}
@@ -302,6 +344,8 @@ const CourseDetails = () => {
                     courseNotes={CourseInfo?.courseNotes}
                   />
                 </>
+              ) : (
+                courseNotesAndVideos
               )}
             </>
           ) : (
