@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const PayFailed = () => {
   const history = useHistory();
   useEffect(() => {
-    const courseId = JSON.parse(localStorage.getItem("courseId"));
+    const courseId = JSON.parse(localStorage.getItem("courseInfo")).courseId;
     alert("Payment failed, Please try after some time.");
     history.push(`/course/${courseId}`);
   }, [history]);

@@ -1,34 +1,32 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-
-import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCourse } from "../../store/actions";
+import { Content } from "../../globalStyles";
+import { ProgressWrapper } from "../Courses/styled";
+import { CircularProgress } from "@mui/material";
+
 const PaySuccess = (props) => {
   const dispatch = useDispatch(),
-    removeCourseFn = () => {
-      dispatch(removeCourse());
-    },
-    { course } = useSelector((state) => state.course),
     { userInfo } = useSelector((state) => state.userInfo);
-  useEffect(() => {
-    callEnroll(
-      userInfo.uid,
-      course.courseId,
-      course.coursePrice,
-      removeCourseFn
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [course.courseId, course.coursePrice, removeCourseFn, userInfo.uid]);
+  const courseInfo = JSON.parse(localStorage.getItem("courseInfo"));
 
-  async function callEnroll(uid, cid, cost, removeCourseFn) {
+  useEffect(() => {
+    callEnroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const callEnroll = async () => {
     const pcost = props.match.params.courseCost;
     const orderId = props.match.params.orderId;
     const txnId = props.match.params.txnId;
-    if (pcost + ".00" === cost || pcost === cost) {
+    if (
+      pcost + ".00" === courseInfo.coursePrice ||
+      pcost === courseInfo.coursePrice
+    ) {
       const Info = {
-        uid: uid,
-        courseId: cid,
+        uid: userInfo.id,
+        courseId: courseInfo.courseId,
         orderId: orderId,
         txnId: txnId,
       };
@@ -37,19 +35,23 @@ const PaySuccess = (props) => {
         .then((res) => {
           if (res.data === "Done") {
             alert("Course Enrolled Successfully");
-            removeCourseFn();
-            props.history.push(`/course/${cid}`);
+            dispatch(removeCourse());
+            props.history.push(`/course/${courseInfo.courseId}`);
           }
         });
     } else {
       alert("Something went wrong.");
     }
-  }
+  };
   return (
-    <div>
-      <h1>Your payment is successful....wait for a moment</h1>
-    </div>
+    <>
+      <Content>
+        <ProgressWrapper>
+          <CircularProgress />
+        </ProgressWrapper>
+      </Content>
+    </>
   );
 };
 
-export default withRouter(PaySuccess);
+export default PaySuccess;

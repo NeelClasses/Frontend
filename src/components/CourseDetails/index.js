@@ -147,7 +147,7 @@ const CourseDetails = () => {
   }
 
   const handlePurchase = async () => {
-    localStorage.setItem("courseId", JSON.stringify(CourseInfo.courseId));
+    localStorage.setItem("courseInfo", JSON.stringify(CourseInfo));
     if (courseAccess && CourseInfo) {
       return;
     } else {
