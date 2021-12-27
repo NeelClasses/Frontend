@@ -50,6 +50,15 @@ const Header = () => {
       history.push(link);
       document.body.style.overflow = "auto";
     },
+    onNavigationLinksClicked = (linkObject) => {
+      setIsSidebarActive(false);
+      history.push({
+        state: {
+          apiUrl: linkObject.apiUrl,
+        },
+        pathname: linkObject.link,
+      });
+    },
     handleLogout = () => {
       dispatch(logout());
     };
@@ -205,11 +214,9 @@ const Header = () => {
                       to="/"
                       key={index}
                       onClick={() =>
-                        history.push({
-                          state: {
-                            apiUrl: item.apiUrl,
-                          },
-                          pathname: item.link,
+                        onNavigationLinksClicked({
+                          apiUrl: item.apiUrl,
+                          link: item.link,
                         })
                       }
                     >
